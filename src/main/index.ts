@@ -3,6 +3,12 @@ import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../resources/icon.png?asset'
 
+// 自定义软件运行缓存路径
+const projectRootPath = process.cwd()
+const projectName = projectRootPath.split('\\').pop()?.toLocaleLowerCase()
+const customDataPath = join(projectRootPath, `/.cache/${projectName}`)
+app.setPath('userData', customDataPath)
+
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
