@@ -1,0 +1,13 @@
+diff --git a/node_modules/cz-customizable/lib/questions.js b/node_modules/cz-customizable/lib/questions.js
+index 9275b1c..5f38343 100644
+--- a/node_modules/cz-customizable/lib/questions.js
++++ b/node_modules/cz-customizable/lib/questions.js
+@@ -116,6 +116,8 @@ module.exports = {
+       {
+         type: 'input',
+         name: 'scope',
++        // https://github.com/leoforfree/cz-customizable/issues/212
++        askAnswered: true, // Add
+         message: messages.customScope,
+         when(answers) {
+           return answers.scope === 'custom';
