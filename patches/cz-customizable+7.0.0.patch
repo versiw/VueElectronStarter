@@ -1,8 +1,21 @@
 diff --git a/node_modules/cz-customizable/lib/questions.js b/node_modules/cz-customizable/lib/questions.js
-index 9275b1c..5f38343 100644
+index 9275b1c..c473fec 100644
 --- a/node_modules/cz-customizable/lib/questions.js
 +++ b/node_modules/cz-customizable/lib/questions.js
-@@ -116,6 +116,8 @@ module.exports = {
+@@ -5,6 +5,12 @@ const getPreviousCommit = require('./utils/get-previous-commit');
+ 
+ const isNotWip = (answers) => answers.type.toLowerCase() !== 'wip';
+ 
++const formatChineseWithSpace = (str) =>{
++  const regChineseFollowed = /([\u4e00-\u9fa5])([^\u4e00-\u9fa5])/gi
++  const regOthersFollowed = /([^\u4e00-\u9fa5])([\u4e00-\u9fa5])/gi
++  return str.replace(regChineseFollowed, '$1 $2').replace(regOthersFollowed, '$1 $2')
++}
++
+ const isValidateTicketNo = (value, config) => {
+   if (!value) {
+     return !config.isTicketNumberRequired;
+@@ -116,6 +122,8 @@ module.exports = {
        {
          type: 'input',
          name: 'scope',
@@ -11,3 +24,12 @@ index 9275b1c..5f38343 100644
          message: messages.customScope,
          when(answers) {
            return answers.scope === 'custom';
+@@ -147,7 +155,7 @@ module.exports = {
+         filter(value) {
+           const upperCaseSubject = config.upperCaseSubject || false;
+ 
+-          return (upperCaseSubject ? value.charAt(0).toUpperCase() : value.charAt(0).toLowerCase()) + value.slice(1);
++          return formatChineseWithSpace((upperCaseSubject ? value.charAt(0).toUpperCase() : value.charAt(0).toLowerCase()) + value.slice(1));
+         },
+       },
+       {
