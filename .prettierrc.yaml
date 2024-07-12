@@ -1,4 +1,13 @@
-singleQuote: true
-semi: false
-printWidth: 100
-trailingComma: none
+# .prettierrc.yaml
+# For more configurations, please refer to: https://prettier.io/docs/en/options
+
+printWidth: 100 # 每行代码的最大宽度，超过这个宽度的代码将会换行
+semi: false # 不在语句末尾添加分号
+singleQuote: true # 使用单引号而不是双引号
+useTabs: false # 用制表符而不是空格缩进
+tabWidth: 2 # Tab缩进大小，默认为2
+trailingComma: none # 在对象或数组最后一个元素后面不添加逗号
+endOfLine: crlf # 使用 Windows 风格的行结束符（Carriage Return Line Feed）
+arrowParens: always # 在箭头函数参数只有一个时，总是添加括号
+quoteProps: as-needed #  object对象中key值是否加引号, as-needed-仅在需要时在对象属性周围添加引号
+bracketSpacing: true # 在单行对象中，在左右保留一个空格
