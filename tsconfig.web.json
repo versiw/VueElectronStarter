@@ -1,10 +1,12 @@
 {
   "extends": "@electron-toolkit/tsconfig/tsconfig.web.json",
   "include": [
+    "src/renderer/src/router/typed-router.d.ts",
     "src/renderer/src/env.d.ts",
     "src/renderer/src/**/*",
     "src/renderer/src/**/*.vue",
-    "src/preload/*.d.ts"
+    "src/preload/*.d.ts",
+    "config/**/*"
   ],
   "compilerOptions": {
     "composite": true,
@@ -12,7 +14,14 @@
     "paths": {
       "@renderer/*": [
         "src/renderer/src/*"
+      ],
+      "@config/*": [
+        "config/*"
       ]
-    }
+    },
+    "moduleResolution": "Bundler",
+    "types": [
+      "unplugin-vue-router/client"
+    ]
   }
 }
