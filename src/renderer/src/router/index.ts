@@ -1,7 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
-// import { routes } from 'vue-router/auto-routes'
-import Index from '@renderer/views/index.vue'
-// import NavIndex from '@renderer/views/nav/nav_index.vue'
+import { createRouter, createWebHistory } from 'vue-router/auto'
 import globalConfig from '@config/index'
 
 const importAutoRoutes = async () => {
@@ -14,14 +11,15 @@ const importAutoRoutes = async () => {
 }
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  // history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: globalConfig.webConfig.useUnpluginVueRouter
     ? await importAutoRoutes()
     : [
         {
           path: '/',
           name: 'index',
-          component: Index
+          component: () => import('@renderer/views/index.vue')
           // 导航栏配置
           // children: [
           //   {
@@ -30,6 +28,28 @@ const router = createRouter({
           //     component: NavIndex
           //   },
           // ]
+        },
+        {
+          path: '/about',
+          name: 'about',
+          component: () => import('@renderer/views/about.vue')
+        },
+        {
+          path: '/groups',
+          name: 'groups',
+          component: () => import('@renderer/views/groups/index.vue'),
+          children: [
+            {
+              path: '/groups/children1',
+              name: 'children1',
+              component: () => import('@renderer/views/groups/children1.vue')
+            },
+            {
+              path: '/groups/children2',
+              name: 'children2',
+              component: () => import('@renderer/views/groups/children2.vue')
+            }
+          ]
         }
       ]
 })
