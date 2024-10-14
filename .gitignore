@@ -5,6 +5,11 @@ out
 .DS_Store
 *.log*
 
+# auto import plugin
+auto-imports.d.ts
+components.d.ts
+typed-router.d.ts
+
 # Created by https://www.toptal.com/developers/gitignore/api/windows,linux,powershell,vue,vuejs,git,node
 # Edit at https://www.toptal.com/developers/gitignore?templates=windows,linux,powershell,vue,vuejs,git,node
 
