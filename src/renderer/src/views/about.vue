@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import Versions from '@renderer/components/Versions.vue'
 
+definePage({
+  meta: {
+    title: '关于',
+    isHide: false,
+    icon: 'InformationCircleOutline',
+    iconAlt: 'InformationCircle'
+  }
+})
+
 const ipcHandle = () => window.electron.ipcRenderer.send('ping')
 </script>
 

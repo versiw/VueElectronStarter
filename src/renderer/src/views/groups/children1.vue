@@ -1,9 +1,12 @@
 <script setup lang="ts">
-// definePage({
-//   meta: {
-//     isHide: true
-//   }
-// })
+definePage({
+  meta: {
+    title: '子选项1',
+    isHide: false,
+    icon: '',
+    iconAlt: ''
+  }
+})
 </script>
 
-<template>children1</template>
+<template>groups1 children1</template>
