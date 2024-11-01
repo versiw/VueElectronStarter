@@ -1,4 +1,4 @@
-// import './assets/main.css'
+import '@renderer/assets/tailwind.css'
 
 import { createApp } from 'vue'
 import App from '@renderer/App.vue'
