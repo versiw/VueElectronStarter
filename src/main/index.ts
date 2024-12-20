@@ -17,6 +17,13 @@ function createWindow(): void {
     height: 600,
     minHeight: 600,
     show: false,
+    //自定义标题栏
+    titleBarStyle: 'hidden',
+    titleBarOverlay: {
+      color: 'rgba(0,0,0,0)',
+      height: 36,
+      symbolColor: 'white'
+    },
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
     webPreferences: {

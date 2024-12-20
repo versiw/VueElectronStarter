@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 import { useMenu } from '@renderer/hooks/layout/menu'
+import ElectronIcon24 from '@renderer/icons/ElectronIcon24.vue'
 
 const isCollapsed = ref(false)
 
@@ -9,20 +10,29 @@ const { activeKey, menuOptions, handleMenuClick } = useMenu()
 </script>
 <template>
   <n-layout class="h-full">
-    <n-layout-header class="h-16 p-2" bordered>
-      <n-flex class="flex items-center h-12" justify="space-between">
-        <div>Vue Electron Starter</div>
-        <n-button>Oops!</n-button>
-        <n-button>Oops!</n-button>
+    <n-layout-header class="h-9 p-1" style="-webkit-app-region: drag" bordered>
+      <n-flex class="flex items-center h-7">
+        <n-icon size="28">
+          <ElectronIcon24 />
+        </n-icon>
+        <n-gradient-text
+          class="text-lg font-bold"
+          :gradient="{
+            from: 'rgb(66, 211, 146)',
+            to: 'rgb(100, 126, 255)'
+          }"
+        >
+          VueElectronStarter
+        </n-gradient-text>
       </n-flex>
     </n-layout-header>
-    <n-layout position="absolute" style="top: 64px; bottom: 0px" has-sider>
+    <n-layout position="absolute" class="top-9 bottom-0" has-sider>
       <n-layout-sider
         :native-scrollbar="false"
         bordered
         collapse-mode="width"
         :collapsed-width="64"
-        :width="220"
+        :width="200"
         :collapsed="isCollapsed"
         show-trigger="arrow-circle"
         @collapse="isCollapsed = true"
@@ -41,14 +51,12 @@ const { activeKey, menuOptions, handleMenuClick } = useMenu()
         <n-layout
           position="absolute"
           content-style="padding: 24px;"
-          style="top: 0px; bottom: 64px"
+          class="absolute top-0 bottom-16"
           :native-scrollbar="false"
         >
           <RouterView />
         </n-layout>
-        <n-layout-footer position="absolute" style="height: 64px; padding: 24px" bordered>
-          底部布局
-        </n-layout-footer>
+        <n-layout-footer position="absolute" class="h-9 p-1" bordered> 底部布局 </n-layout-footer>
       </n-layout>
     </n-layout>
   </n-layout>
