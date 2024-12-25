@@ -3,6 +3,9 @@ import { ref } from 'vue'
 import { RouterView } from 'vue-router'
 import { useMenu } from '@renderer/hooks/layout/menu'
 import NHeader from '@renderer/layouts/NHeader.vue'
+import { useMessage } from 'naive-ui'
+
+window.$message = useMessage()
 
 const isCollapsed = ref(false)
 

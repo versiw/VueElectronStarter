@@ -11,6 +11,6 @@ const naiveDarkTheme = computed(() => (themeConfig.value.themeScheme === 'dark' 
 
 <template>
   <n-config-provider :theme="naiveDarkTheme" class="h-full">
-    <Layout></Layout>
+    <n-message-provider> <Layout></Layout></n-message-provider>
   </n-config-provider>
 </template>

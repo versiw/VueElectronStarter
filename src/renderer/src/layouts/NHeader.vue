@@ -3,7 +3,7 @@ import { defineComponent } from 'vue'
 import ElectronIcon24 from '@renderer/icons/ElectronIcon24.vue'
 import { renderIcon } from '@renderer/utils/common'
 import { useDrawer } from '@renderer/hooks/common/drawer'
-import Theme from '@renderer/layouts/Theme.vue'
+import ThemeDrawer from '@renderer/layouts/ThemeDrawer.vue'
 
 defineComponent({
   name: 'NHeader'
@@ -49,6 +49,6 @@ const { active, placement, activate } = useDrawer()
         </n-tooltip>
       </n-flex>
     </n-flex>
-    <Theme v-model:active="active" :placement="placement" @update:active="active = $event" />
+    <ThemeDrawer v-model:active="active" :placement="placement" @update:active="active = $event" />
   </n-layout-header>
 </template>
