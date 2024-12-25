@@ -25,6 +25,5 @@ const iconMaps: Record<string, Component> = Object.keys(Icons).reduce((iconMap, 
   }
   return iconMap
 }, {})
-console.log(iconMaps)
 
 export default iconMaps

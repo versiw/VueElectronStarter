@@ -1,5 +1,5 @@
 import iconMaps from '@renderer/icons/iconMaps'
-import { renderIcon } from '@renderer/utils/common'
+import { renderIconMenu } from '@renderer/utils/common'
 import { MenuOption } from 'naive-ui'
 import { computed, ref } from 'vue'
 import { RouteRecordNormalized, useRoute, useRouter } from 'vue-router'
@@ -38,20 +38,20 @@ export const useMenu = () => {
               key: route.path + '/' + child.path,
               icon:
                 activeKey.value === route.path + '/' + child.path
-                  ? renderIcon(iconMaps[(child.meta?.iconAlt as string) || 'Warning'])
-                  : renderIcon(iconMaps[(child.meta?.icon as string) || 'WarningOutline'])
+                  ? renderIconMenu(iconMaps[(child.meta?.iconAlt as string) || 'Warning'])
+                  : renderIconMenu(iconMaps[(child.meta?.icon as string) || 'WarningOutline'])
             })),
             icon: isActive
-              ? renderIcon(iconMaps[(route.meta.iconAlt as string) || 'Warning'])
-              : renderIcon(iconMaps[route.meta.icon as string] || 'WarningOutline')
+              ? renderIconMenu(iconMaps[(route.meta.iconAlt as string) || 'Warning'])
+              : renderIconMenu(iconMaps[route.meta.icon as string] || 'WarningOutline')
           }
         } else {
           return {
             label: route.meta?.title || route.name,
             key: route.path,
             icon: isActive
-              ? renderIcon(iconMaps[(route.meta.iconAlt as string) || 'Warning'])
-              : renderIcon(iconMaps[route.meta.icon as string] || 'WarningOutline')
+              ? renderIconMenu(iconMaps[(route.meta.iconAlt as string) || 'Warning'])
+              : renderIconMenu(iconMaps[route.meta.icon as string] || 'WarningOutline')
           }
         }
       })
