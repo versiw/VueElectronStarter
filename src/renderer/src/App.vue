@@ -3,14 +3,21 @@ import Layout from '@renderer/layouts/Layout.vue'
 import { darkTheme } from 'naive-ui'
 import { computed } from 'vue'
 import { useThemeConfig } from '@renderer/hooks/common/useThemeConfig'
+import { NConfigProvider } from 'naive-ui'
 
 const { themeConfig } = useThemeConfig()
 
 const naiveDarkTheme = computed(() => (themeConfig.value.themeScheme === 'dark' ? darkTheme : null))
+
+const themeOverrides = computed(() => ({
+  common: {
+    ...themeConfig.value.themeColor
+  }
+}))
 </script>
 
 <template>
-  <n-config-provider :theme="naiveDarkTheme" class="h-full">
+  <n-config-provider :theme-overrides="themeOverrides" :theme="naiveDarkTheme" class="h-full">
     <n-message-provider> <Layout></Layout></n-message-provider>
   </n-config-provider>
 </template>

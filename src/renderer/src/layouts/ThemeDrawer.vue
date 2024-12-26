@@ -33,7 +33,7 @@ watch(
   }
 )
 
-const { themeConfig, copyThemeConfigToJSON } = useThemeConfig()
+const { themeConfig, copyThemeConfigToJSON, resetThemeConfig } = useThemeConfig()
 </script>
 
 <template>
@@ -66,63 +66,64 @@ const { themeConfig, copyThemeConfigToJSON } = useThemeConfig()
               <n-layout
                 class="p-2 bg-transparent border-2 rounded-lg border-transparent hover:border-blue-500 shadow dark:shadow-coolGray-5"
               >
-                <n-layout-header class="h-6 rounded-lg m-1"></n-layout-header>
+                <n-layout-header
+                  class="h-4 rounded-lg"
+                  :style="{
+                    backgroundColor: themeConfig.themeColor.primaryColor,
+                    backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))`,
+                    backgroundBlendMode: 'multiply'
+                  }"
+                ></n-layout-header>
                 <n-layout has-sider class="bg-transparent">
-                  <n-layout-sider class="w-6 rounded-lg m-1"></n-layout-sider>
+                  <n-layout-sider
+                    class="w-4 rounded-lg my-1 bg-opacity-50 bg-blend-multiply"
+                    :style="{ backgroundColor: themeConfig.themeColor.primaryColor }"
+                  ></n-layout-sider>
                   <n-layout class="bg-transparent">
-                    <n-layout-content class="h-12 rounded-lg m-1"> </n-layout-content>
-                    <n-layout-footer class="h-6 rounded-lg m-1"></n-layout-footer>
+                    <n-layout-content class="h-10 rounded-lg m-1 invert"> </n-layout-content>
+                    <n-layout-footer
+                      class="h-4 rounded-lg m-1"
+                      :style="{ backgroundColor: themeConfig.themeColor.primaryColor }"
+                    ></n-layout-footer>
                   </n-layout>
                 </n-layout>
               </n-layout>
             </n-gi>
-            <n-gi>
+            <n-gi class="w-full">
               <n-layout
-                class="p-2 bg-transparent border-2 rounded-lg border-transparent hover:border-blue-500"
+                class="p-2 bg-transparent border-2 rounded-lg border-transparent hover:border-blue-500 shadow dark:shadow-coolGray-5"
               >
-                <n-layout-header class="h-6 rounded-lg m-1"></n-layout-header>
+                <n-layout-header class="h-4 rounded-lg"></n-layout-header>
                 <n-layout has-sider class="bg-transparent">
-                  <n-layout-sider class="w-6 rounded-lg m-1"></n-layout-sider>
+                  <n-layout-sider class="w-4 rounded-lg my-1"></n-layout-sider>
                   <n-layout class="bg-transparent">
-                    <n-layout-content class="h-12 rounded-lg m-1"> </n-layout-content>
-                    <n-layout-footer class="h-6 rounded-lg m-1"></n-layout-footer>
-                  </n-layout>
-                </n-layout>
-              </n-layout>
-            </n-gi>
-            <n-gi>
-              <n-layout
-                class="p-2 bg-transparent border-2 rounded-lg border-transparent hover:border-blue-500"
-              >
-                <n-layout-header class="h-6 rounded-lg m-1"></n-layout-header>
-                <n-layout has-sider class="bg-transparent">
-                  <n-layout-sider class="w-6 rounded-lg m-1"></n-layout-sider>
-                  <n-layout class="bg-transparent">
-                    <n-layout-content class="h-12 rounded-lg m-1"> </n-layout-content>
-                    <n-layout-footer class="h-6 rounded-lg m-1"></n-layout-footer>
-                  </n-layout>
-                </n-layout>
-              </n-layout>
-            </n-gi>
-            <n-gi>
-              <n-layout
-                class="p-2 bg-transparent border-2 rounded-lg border-transparent hover:border-blue-500"
-              >
-                <n-layout-header class="h-6 rounded-lg m-1"></n-layout-header>
-                <n-layout has-sider class="bg-transparent">
-                  <n-layout-sider class="w-6 rounded-lg m-1"></n-layout-sider>
-                  <n-layout class="bg-transparent">
-                    <n-layout-content class="h-12 rounded-lg m-1"> </n-layout-content>
-                    <n-layout-footer class="h-6 rounded-lg m-1"></n-layout-footer>
+                    <n-layout-content class="h-10 rounded-lg m-1 invert"> </n-layout-content>
+                    <n-layout-footer class="h-4 rounded-lg m-1"></n-layout-footer>
                   </n-layout>
                 </n-layout>
               </n-layout>
             </n-gi>
           </n-grid>
         </n-flex>
+        <n-flex vertical>
+          <n-divider> 主题颜色 </n-divider>
+          <n-flex class="justify-between">
+            <div>主色</div>
+            <n-color-picker
+              v-model:value="themeConfig.themeColor.primaryColor"
+              class="w-24"
+              :modes="['hex', 'rgb', 'hsl']"
+              show-preview
+              :show-alpha="false"
+            />
+          </n-flex>
+        </n-flex>
       </n-flex>
       <template #footer>
-        <n-button type="primary" @click="copyThemeConfigToJSON"> 复制配置 </n-button>
+        <n-flex class="w-full justify-between">
+          <n-button type="error" ghost @click="resetThemeConfig"> 重置配置 </n-button>
+          <n-button type="primary" @click="copyThemeConfigToJSON"> 复制配置 </n-button>
+        </n-flex>
       </template>
     </n-drawer-content>
   </n-drawer>

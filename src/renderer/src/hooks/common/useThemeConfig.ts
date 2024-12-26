@@ -1,14 +1,29 @@
 import globalConfig from '@config/index'
+import ThemeConfig from '@config/theme'
 import { ref, watchEffect } from 'vue'
 
-export const useThemeConfig = () => {
-  const { themeConfig: temp } = globalConfig
+const temp = globalConfig.themeConfig
+const initThemeConfig = JSON.parse(JSON.stringify(temp))
+const defaultThemeConfig = JSON.parse(JSON.stringify(initThemeConfig))
 
-  const themeConfig = ref(temp)
+export const useThemeConfig = () => {
+  const themeConfig = ref<ThemeConfig>(defaultThemeConfig)
 
   watchEffect(() => {
     console.log(`themeConfig changed to ${JSON.stringify(themeConfig.value)}`)
+    console.log(`temp changed to ${JSON.stringify(temp)}`)
+    console.log(`initThemeConfig changed to ${JSON.stringify(initThemeConfig)}`)
   })
+
+  // watch(
+  //   () => themeConfig.value,
+  //   (newVal) => {
+  //     console.log(`themeConfig changed to ${JSON.stringify(newVal)}`)
+  //   },
+  //   {
+  //     deep: true
+  //   }
+  // )
 
   const copyThemeConfigToJSON = async () => {
     try {
@@ -21,5 +36,10 @@ export const useThemeConfig = () => {
     }
   }
 
-  return { themeConfig, copyThemeConfigToJSON }
+  const resetThemeConfig = () => {
+    Object.assign(themeConfig.value, JSON.parse(JSON.stringify(initThemeConfig)))
+    console.log('已重置主题配置')
+  }
+
+  return { themeConfig, copyThemeConfigToJSON, resetThemeConfig }
 }

@@ -3,4 +3,8 @@ export default interface ThemeConfig {
   themeScheme: string
   // 布局模式
   layoutBase: string
+  // 主题颜色
+  themeColor: {
+    primaryColor: string
+  }
 }
