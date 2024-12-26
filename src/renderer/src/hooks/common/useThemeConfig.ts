@@ -1,6 +1,6 @@
 import globalConfig from '@config/index'
 import ThemeConfig from '@config/theme'
-import { ref, watchEffect } from 'vue'
+import { ref, watch, watchEffect } from 'vue'
 
 const temp = globalConfig.themeConfig
 const initThemeConfig = JSON.parse(JSON.stringify(temp))
@@ -15,15 +15,17 @@ export const useThemeConfig = () => {
     console.log(`initThemeConfig changed to ${JSON.stringify(initThemeConfig)}`)
   })
 
-  // watch(
-  //   () => themeConfig.value,
-  //   (newVal) => {
-  //     console.log(`themeConfig changed to ${JSON.stringify(newVal)}`)
-  //   },
-  //   {
-  //     deep: true
-  //   }
-  // )
+  // 监听 primaryColor 变化，同步 primaryColorHover 和 primaryColorPressed
+  watch(
+    () => themeConfig.value.themeColor.primaryColor,
+    (newVal) => {
+      themeConfig.value.themeColor.primaryColorHover = newVal
+      themeConfig.value.themeColor.primaryColorPressed = newVal
+    },
+    {
+      deep: true
+    }
+  )
 
   const copyThemeConfigToJSON = async () => {
     try {

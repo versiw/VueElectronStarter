@@ -4,12 +4,15 @@ import { RouterView } from 'vue-router'
 import { useMenu } from '@renderer/hooks/layout/menu'
 import NHeader from '@renderer/layouts/NHeader.vue'
 import { useMessage } from 'naive-ui'
+import { useThemeConfig } from '@renderer/hooks/common/useThemeConfig'
 
 window.$message = useMessage()
 
 const isCollapsed = ref(false)
 
 const { activeKey, menuOptions, handleMenuClick } = useMenu()
+
+const { themeConfig } = useThemeConfig()
 </script>
 <template>
   <n-layout class="h-full">
@@ -44,7 +47,9 @@ const { activeKey, menuOptions, handleMenuClick } = useMenu()
         >
           <RouterView />
         </n-layout>
-        <n-layout-footer position="absolute" class="h-9 p-1" bordered> 底部布局 </n-layout-footer>
+        <div v-if="themeConfig.layoutBase === 'default'">
+          <n-layout-footer position="absolute" class="h-9 p-1" bordered> 底部布局 </n-layout-footer>
+        </div>
       </n-layout>
     </n-layout>
   </n-layout>

@@ -22,7 +22,7 @@ function createWindow(): void {
     titleBarOverlay: {
       color: 'rgba(0,0,0,0)',
       height: 36,
-      symbolColor: 'white'
+      symbolColor: 'gray'
     },
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),

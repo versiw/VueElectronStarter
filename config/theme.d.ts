@@ -6,5 +6,7 @@ export default interface ThemeConfig {
   // 主题颜色
   themeColor: {
     primaryColor: string
+    primaryColorHover: string
+    primaryColorPressed: string
   }
 }

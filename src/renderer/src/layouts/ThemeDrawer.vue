@@ -61,52 +61,106 @@ const { themeConfig, copyThemeConfigToJSON, resetThemeConfig } = useThemeConfig(
         </n-flex>
         <n-flex vertical>
           <n-divider> 布局模式 </n-divider>
-          <n-grid x-gap="32" y-gap="24" :cols="2">
-            <n-gi class="w-full">
-              <n-layout
-                class="p-2 bg-transparent border-2 rounded-lg border-transparent hover:border-blue-500 shadow dark:shadow-coolGray-5"
-              >
-                <n-layout-header
-                  class="h-4 rounded-lg"
-                  :style="{
-                    backgroundColor: themeConfig.themeColor.primaryColor,
-                    backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))`,
-                    backgroundBlendMode: 'multiply'
-                  }"
-                ></n-layout-header>
-                <n-layout has-sider class="bg-transparent">
-                  <n-layout-sider
-                    class="w-4 rounded-lg my-1 bg-opacity-50 bg-blend-multiply"
-                    :style="{ backgroundColor: themeConfig.themeColor.primaryColor }"
-                  ></n-layout-sider>
-                  <n-layout class="bg-transparent">
-                    <n-layout-content class="h-10 rounded-lg m-1 invert"> </n-layout-content>
-                    <n-layout-footer
-                      class="h-4 rounded-lg m-1"
-                      :style="{ backgroundColor: themeConfig.themeColor.primaryColor }"
-                    ></n-layout-footer>
+          <n-flex>
+            <n-tooltip trigger="hover">
+              <template #trigger>
+                <n-layout
+                  class="p-2 hover:cursor-pointer bg-transparent border-2 rounded-md border-transparent hover:border-blue-500 shadow-xl dark:shadow-coolGray-5"
+                  @click="themeConfig.layoutBase = 'default'"
+                >
+                  <n-layout-header
+                    class="layout-header h-4 rounded-md"
+                    :style="{
+                      backgroundColor: themeConfig.themeColor.primaryColor
+                    }"
+                  ></n-layout-header>
+                  <n-layout has-sider class="bg-transparent">
+                    <n-layout-sider
+                      class="layout-sider w-4 rounded-md mt-1 mr-1 bg-opacity-50 bg-blend-multiply"
+                      :style="{
+                        backgroundColor: themeConfig.themeColor.primaryColor
+                      }"
+                    ></n-layout-sider>
+                    <n-layout class="bg-transparent">
+                      <n-layout-content
+                        class="layout-content h-10 rounded-md mt-1"
+                        :style="{
+                          backgroundColor: themeConfig.themeColor.primaryColor
+                        }"
+                      >
+                      </n-layout-content>
+                      <n-layout-footer
+                        class="layout-footer h-4 rounded-md mt-1"
+                        :style="{
+                          backgroundColor: themeConfig.themeColor.primaryColor
+                        }"
+                      ></n-layout-footer>
+                    </n-layout>
                   </n-layout>
                 </n-layout>
-              </n-layout>
-            </n-gi>
-            <n-gi class="w-full">
-              <n-layout
-                class="p-2 bg-transparent border-2 rounded-lg border-transparent hover:border-blue-500 shadow dark:shadow-coolGray-5"
-              >
-                <n-layout-header class="h-4 rounded-lg"></n-layout-header>
-                <n-layout has-sider class="bg-transparent">
-                  <n-layout-sider class="w-4 rounded-lg my-1"></n-layout-sider>
-                  <n-layout class="bg-transparent">
-                    <n-layout-content class="h-10 rounded-lg m-1 invert"> </n-layout-content>
-                    <n-layout-footer class="h-4 rounded-lg m-1"></n-layout-footer>
+              </template>
+              默认布局
+            </n-tooltip>
+            <n-tooltip trigger="hover">
+              <template #trigger>
+                <n-layout
+                  class="p-2 hover:cursor-pointer bg-transparent border-2 rounded-md border-transparent hover:border-blue-500 shadow-xl dark:shadow-coolGray-5"
+                  @click="themeConfig.layoutBase = 'no-footer'"
+                >
+                  <n-layout-header
+                    class="layout-header h-4 rounded-md"
+                    :style="{
+                      backgroundColor: themeConfig.themeColor.primaryColor
+                    }"
+                  ></n-layout-header>
+                  <n-layout has-sider class="bg-transparent">
+                    <n-layout-sider
+                      class="layout-sider w-4 h-14 rounded-md mt-1 mr-1 bg-opacity-50 bg-blend-multiply"
+                      :style="{
+                        backgroundColor: themeConfig.themeColor.primaryColor
+                      }"
+                    ></n-layout-sider>
+                    <n-layout class="bg-transparent">
+                      <n-layout-content
+                        class="layout-content h-14 rounded-md mt-1"
+                        :style="{
+                          backgroundColor: themeConfig.themeColor.primaryColor
+                        }"
+                      >
+                      </n-layout-content>
+                    </n-layout>
                   </n-layout>
                 </n-layout>
-              </n-layout>
-            </n-gi>
-          </n-grid>
+              </template>
+              无底部布局
+            </n-tooltip>
+          </n-flex>
         </n-flex>
         <n-flex vertical>
           <n-divider> 主题颜色 </n-divider>
+          <n-flex class="justify-between">
+            <div>主色</div>
+            <n-color-picker
+              v-model:value="themeConfig.themeColor.primaryColor"
+              class="w-24"
+              :modes="['hex', 'rgb', 'hsl']"
+              show-preview
+              :show-alpha="false"
+            />
+          </n-flex>
+          <n-flex class="justify-between">
+            <div>主色</div>
+            <n-color-picker
+              v-model:value="themeConfig.themeColor.primaryColor"
+              class="w-24"
+              :modes="['hex', 'rgb', 'hsl']"
+              show-preview
+              :show-alpha="false"
+            />
+          </n-flex>
+        </n-flex>
+        <n-flex vertical>
+          <n-divider> 页面功能 </n-divider>
           <n-flex class="justify-between">
             <div>主色</div>
             <n-color-picker
@@ -129,4 +183,16 @@ const { themeConfig, copyThemeConfigToJSON, resetThemeConfig } = useThemeConfig(
   </n-drawer>
 </template>
 
-<style scoped></style>
+<style scoped>
+.layout-header,
+.layout-sider,
+.layout-footer {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  background-blend-mode: multiply;
+}
+
+.layout-content {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
+  background-blend-mode: multiply;
+}
+</style>
