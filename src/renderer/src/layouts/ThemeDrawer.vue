@@ -34,6 +34,42 @@ watch(
 )
 
 const { themeConfig, copyThemeConfigToJSON, resetThemeConfig } = useThemeConfig()
+
+const animationSelect = ref('fade')
+
+const options2Object = {
+  fade: {
+    enter: 'animate__fadeInLeft',
+    leave: 'animate__fadeOutRight'
+  },
+  zoom: {
+    enter: 'animate__zoomIn',
+    leave: 'animate__zoomOut'
+  }
+}
+
+const options = [
+  {
+    label: '滑动',
+    value: 'fade',
+    disabled: false
+  },
+  {
+    label: '缩放',
+    value: 'zoom',
+    disabled: false
+  }
+]
+
+watch(
+  () => animationSelect.value,
+  (newVal) => {
+    themeConfig.value.animation = options2Object[newVal]
+  },
+  {
+    immediate: true
+  }
+)
 </script>
 
 <template>
@@ -198,14 +234,8 @@ const { themeConfig, copyThemeConfigToJSON, resetThemeConfig } = useThemeConfig(
         <n-flex vertical>
           <n-divider> 页面功能 </n-divider>
           <n-flex class="justify-between">
-            <div>主色</div>
-            <n-color-picker
-              v-model:value="themeConfig.themeColor.primaryColor"
-              class="w-24"
-              :modes="['hex', 'rgb', 'hsl']"
-              show-preview
-              :show-alpha="false"
-            />
+            <div>页面切换动画类型</div>
+            <n-select v-model:value="animationSelect" class="w-32" :options="options" />
           </n-flex>
         </n-flex>
       </n-flex>

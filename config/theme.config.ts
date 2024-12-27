@@ -20,7 +20,11 @@ const themeConfig: ThemeConfig = {
     infoColorHover: '#9462FF',
     infoColorPressed: '#9462FF'
   },
-  followPrimaryColor: true
+  followPrimaryColor: true,
+  animation: {
+    enter: 'animate__fadeInLeft',
+    leave: 'animate__fadeOutRight'
+  }
 }
 
 export default themeConfig

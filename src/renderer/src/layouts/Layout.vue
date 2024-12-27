@@ -45,7 +45,17 @@ const { themeConfig } = useThemeConfig()
           class="absolute top-0 bottom-16 select-text"
           :native-scrollbar="false"
         >
-          <RouterView />
+          <transition
+            :duration="{ enter: 1000, leave: 1000 }"
+            name="custom"
+            mode="out-in"
+            appear
+            :enter-active-class="`animate__animated ${themeConfig.animation.enter} custom-enter-active`"
+            :leave-active-class="`animate__animated ${themeConfig.animation.leave} custom-leave-active`"
+            :appear-active-class="`animate__animated ${themeConfig.animation.enter}`"
+          >
+            <RouterView />
+          </transition>
         </n-layout>
         <div v-if="themeConfig.layoutBase === 'default'">
           <n-layout-footer position="absolute" class="h-9 p-1" bordered> 底部布局 </n-layout-footer>
@@ -54,3 +64,14 @@ const { themeConfig } = useThemeConfig()
     </n-layout>
   </n-layout>
 </template>
+
+<style scoped>
+.custom-enter-from,
+.custom-leave-to {
+  opacity: 0;
+}
+.custom-enter-active,
+.custom-leave-active {
+  transition: opacity 0.3s ease;
+}
+</style>

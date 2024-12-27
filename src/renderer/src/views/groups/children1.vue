@@ -9,4 +9,6 @@ definePage({
 })
 </script>
 
-<template>groups1 children1</template>
+<template>
+  <div>groups1 children1</div>
+</template>

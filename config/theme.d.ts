@@ -28,4 +28,11 @@ export default interface ThemeConfig {
   }
   // 是否跟随主色
   followPrimaryColor: boolean
+  // 是否开启页面切换动画
+  // pageTransition: boolean,
+  // 页面切换动画
+  animation: {
+    enter: string
+    leave: string
+  }
 }

@@ -1,4 +1,5 @@
 import '@renderer/assets/tailwind.css'
+import 'animate.css'
 
 import { createApp } from 'vue'
 import App from '@renderer/App.vue'
