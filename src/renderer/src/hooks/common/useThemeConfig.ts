@@ -29,7 +29,6 @@ export const useThemeConfig = () => {
   watch(
     () => [
       themeConfig.value.themeColor.primaryColor,
-      themeConfig.value.themeColor.infoColor,
       themeConfig.value.themeColor.successColor,
       themeConfig.value.themeColor.warningColor,
       themeConfig.value.themeColor.errorColor
