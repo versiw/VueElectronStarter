@@ -45,12 +45,24 @@ const options2Object = {
   zoom: {
     enter: 'animate__zoomIn',
     leave: 'animate__zoomOut'
+  },
+  slide: {
+    enter: 'animate__slideInDown',
+    leave: 'animate__slideOutDown'
+  },
+  bounce: {
+    enter: 'animate__bounceIn',
+    leave: 'animate__bounceOut'
+  },
+  flip: {
+    enter: 'animate__flipInY',
+    leave: 'animate__flipOutY'
   }
 }
 
 const options = [
   {
-    label: '滑动',
+    label: '渐变',
     value: 'fade',
     disabled: false
   },
@@ -58,13 +70,28 @@ const options = [
     label: '缩放',
     value: 'zoom',
     disabled: false
+  },
+  {
+    label: '滑动',
+    value: 'slide',
+    disabled: false
+  },
+  {
+    label: '弹跳',
+    value: 'bounce',
+    disabled: false
+  },
+  {
+    label: '翻转',
+    value: 'flip',
+    disabled: false
   }
 ]
 
 watch(
   () => animationSelect.value,
   (newVal) => {
-    themeConfig.value.animation = options2Object[newVal]
+    themeConfig.value.animationScheme = options2Object[newVal]
   },
   {
     immediate: true
@@ -102,7 +129,7 @@ watch(
               <template #trigger>
                 <n-layout
                   class="p-2 hover:cursor-pointer bg-transparent border-2 rounded-md border-transparent hover:border-blue-500 shadow-xl dark:shadow-coolGray-5"
-                  @click="themeConfig.layoutBase = 'default'"
+                  @click="themeConfig.layoutScheme = 'default'"
                 >
                   <n-layout-header
                     class="layout-header h-4 rounded-md"
@@ -141,7 +168,7 @@ watch(
               <template #trigger>
                 <n-layout
                   class="p-2 hover:cursor-pointer bg-transparent border-2 rounded-md border-transparent hover:border-blue-500 shadow-xl dark:shadow-coolGray-5"
-                  @click="themeConfig.layoutBase = 'no-footer'"
+                  @click="themeConfig.layoutScheme = 'no-footer'"
                 >
                   <n-layout-header
                     class="layout-header h-4 rounded-md"
@@ -234,9 +261,15 @@ watch(
         <n-flex vertical>
           <n-divider> 页面功能 </n-divider>
           <n-flex class="justify-between">
-            <div>页面切换动画类型</div>
-            <n-select v-model:value="animationSelect" class="w-32" :options="options" />
+            <div>页面切换动画</div>
+            <n-switch v-model:value="themeConfig.animation" />
           </n-flex>
+          <div v-if="themeConfig.animation">
+            <n-flex class="justify-between">
+              <div>页面切换动画效果</div>
+              <n-select v-model:value="animationSelect" class="w-32" :options="options" />
+            </n-flex>
+          </div>
         </n-flex>
       </n-flex>
       <template #footer>

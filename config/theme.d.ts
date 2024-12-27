@@ -2,7 +2,7 @@ export default interface ThemeConfig {
   // 主题模式
   themeScheme: string
   // 布局模式
-  layoutBase: string
+  layoutScheme: string
   // 主题颜色
   themeColor: {
     // 主色
@@ -29,9 +29,9 @@ export default interface ThemeConfig {
   // 是否跟随主色
   followPrimaryColor: boolean
   // 是否开启页面切换动画
-  // pageTransition: boolean,
+  animation: boolean
   // 页面切换动画
-  animation: {
+  animationScheme: {
     enter: string
     leave: string
   }

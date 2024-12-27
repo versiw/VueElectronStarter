@@ -45,19 +45,38 @@ const { themeConfig } = useThemeConfig()
           class="absolute top-0 bottom-16 select-text"
           :native-scrollbar="false"
         >
-          <transition
-            :duration="{ enter: 1000, leave: 1000 }"
-            name="custom"
-            mode="out-in"
-            appear
-            :enter-active-class="`animate__animated ${themeConfig.animation.enter} custom-enter-active`"
-            :leave-active-class="`animate__animated ${themeConfig.animation.leave} custom-leave-active`"
-            :appear-active-class="`animate__animated ${themeConfig.animation.enter}`"
-          >
+          <div v-if="themeConfig.animation">
+            <RouterView v-slot="{ Component }">
+              <transition
+                name="custom"
+                mode="out-in"
+                appear
+                :enter-active-class="`animate__animated ${themeConfig.animationScheme.enter} animate__faster`"
+                :leave-active-class="`animate__animated ${themeConfig.animationScheme.leave} animate__faster`"
+                :appear-active-class="`animate__animated ${themeConfig.animationScheme.enter} animate__faster`"
+              >
+                <keep-alive>
+                  <component :is="Component" />
+                </keep-alive>
+              </transition>
+            </RouterView>
+
+            <!-- <transition
+              :duration="{ enter: 1000, leave: 600 }"
+              mode="out-in"
+              appear
+              :leave-active-class="`animate__animated ${themeConfig.animationScheme.leave}`"
+              :enter-active-class="`animate__animated ${themeConfig.animationScheme.enter}`"
+              :appear-active-class="`animate__animated ${themeConfig.animationScheme.enter}`"
+            >
+              <RouterView />
+            </transition> -->
+          </div>
+          <div v-else>
             <RouterView />
-          </transition>
+          </div>
         </n-layout>
-        <div v-if="themeConfig.layoutBase === 'default'">
+        <div v-if="themeConfig.layoutScheme === 'default'">
           <n-layout-footer position="absolute" class="h-9 p-1" bordered> 底部布局 </n-layout-footer>
         </div>
       </n-layout>
@@ -66,12 +85,8 @@ const { themeConfig } = useThemeConfig()
 </template>
 
 <style scoped>
-.custom-enter-from,
-.custom-leave-to {
+.animate__animated.animate__slideOutDown {
   opacity: 0;
-}
-.custom-enter-active,
-.custom-leave-active {
-  transition: opacity 0.3s ease;
+  transition: opacity 600ms ease;
 }
 </style>

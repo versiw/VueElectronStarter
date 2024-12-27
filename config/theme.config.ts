@@ -2,7 +2,7 @@ import ThemeConfig from './theme'
 
 const themeConfig: ThemeConfig = {
   themeScheme: 'dark',
-  layoutBase: 'default',
+  layoutScheme: 'default',
   themeColor: {
     primaryColor: '#9462FF',
     infoColor: '#9462FF',
@@ -21,7 +21,8 @@ const themeConfig: ThemeConfig = {
     infoColorPressed: '#9462FF'
   },
   followPrimaryColor: true,
-  animation: {
+  animation: true,
+  animationScheme: {
     enter: 'animate__fadeInLeft',
     leave: 'animate__fadeOutRight'
   }
