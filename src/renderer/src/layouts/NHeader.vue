@@ -4,12 +4,14 @@ import ElectronIcon24 from '@renderer/icons/ElectronIcon24.vue'
 import { renderIcon } from '@renderer/utils/common'
 import { useDrawer } from '@renderer/hooks/common/drawer'
 import ThemeDrawer from '@renderer/layouts/ThemeDrawer.vue'
+import { useThemeConfig } from '@renderer/hooks/common/useThemeConfig'
 
 defineComponent({
   name: 'NHeader'
 })
 
 const { active, placement, activate } = useDrawer()
+const { themeConfig } = useThemeConfig()
 </script>
 <template>
   <n-layout-header class="h-9 p-1" style="-webkit-app-region: drag; user-select: none" bordered>
@@ -29,7 +31,7 @@ const { active, placement, activate } = useDrawer()
           VueElectronStarter
         </n-gradient-text>
       </n-flex>
-      <n-flex class="flex justify-end">
+      <n-flex class="flex flex-row-reverse justify-end">
         <n-tooltip trigger="hover">
           <template #trigger>
             <n-button
@@ -46,6 +48,27 @@ const { active, placement, activate } = useDrawer()
             </n-button>
           </template>
           主题配置
+        </n-tooltip>
+        <n-tooltip trigger="hover">
+          <template #trigger>
+            <n-button
+              text
+              strong
+              size="small"
+              :focusable="false"
+              :bordered="false"
+              ghost
+              :render-icon="renderIcon(themeConfig.themeScheme === 'dark' ? 'Moon' : 'Sunny')"
+              style="-webkit-app-region: no-drag"
+              @click="
+                themeConfig.themeScheme === 'dark'
+                  ? (themeConfig.themeScheme = 'light')
+                  : (themeConfig.themeScheme = 'dark')
+              "
+            >
+            </n-button>
+          </template>
+          主题模式
         </n-tooltip>
       </n-flex>
     </n-flex>
