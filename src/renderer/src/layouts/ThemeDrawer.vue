@@ -149,9 +149,45 @@ const { themeConfig, copyThemeConfigToJSON, resetThemeConfig } = useThemeConfig(
             />
           </n-flex>
           <n-flex class="justify-between">
-            <div>主色</div>
+            <div>
+              <n-space
+                ><div>信息色</div>
+                <n-switch v-model:value="themeConfig.followPrimaryColor" />
+              </n-space>
+            </div>
             <n-color-picker
-              v-model:value="themeConfig.themeColor.primaryColor"
+              v-model:value="themeConfig.themeColor.infoColor"
+              :disabled="themeConfig.followPrimaryColor"
+              class="w-24"
+              :modes="['hex', 'rgb', 'hsl']"
+              show-preview
+              :show-alpha="false"
+            />
+          </n-flex>
+          <n-flex class="justify-between">
+            <div>成功色</div>
+            <n-color-picker
+              v-model:value="themeConfig.themeColor.successColor"
+              class="w-24"
+              :modes="['hex', 'rgb', 'hsl']"
+              show-preview
+              :show-alpha="false"
+            />
+          </n-flex>
+          <n-flex class="justify-between">
+            <div>警告色</div>
+            <n-color-picker
+              v-model:value="themeConfig.themeColor.warningColor"
+              class="w-24"
+              :modes="['hex', 'rgb', 'hsl']"
+              show-preview
+              :show-alpha="false"
+            />
+          </n-flex>
+          <n-flex class="justify-between">
+            <div>错误色</div>
+            <n-color-picker
+              v-model:value="themeConfig.themeColor.errorColor"
               class="w-24"
               :modes="['hex', 'rgb', 'hsl']"
               show-preview
