@@ -1,6 +1,4 @@
-import ThemeConfig from './theme'
-
-const themeConfig: ThemeConfig = {
+const themeConfig: Web.Theme.ThemeConfig = {
   themeScheme: 'dark',
   layoutScheme: 'default',
   themeColor: {

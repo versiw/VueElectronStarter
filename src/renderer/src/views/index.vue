@@ -10,6 +10,7 @@ definePage({
 
 import ElectronIcon24 from '@renderer/icons/ElectronIcon24.vue'
 import { reactive } from 'vue'
+import { $t } from '@renderer/locales'
 const versions = reactive({ ...window.electron.process.versions })
 
 const ipcHandle = () => window.electron.ipcRenderer.send('ping')
@@ -27,9 +28,9 @@ const ipcHandle = () => window.electron.ipcRenderer.send('ping')
         to: 'rgb(100, 126, 255)'
       }"
     >
-      VueElectronStarter
+      {{ $t('system.title') }}
     </n-gradient-text>
-    <div>基于 electron-vite 的 Vue 3 桌面应用起始项目</div>
+    <div>{{ $t('system.description') }}</div>
     <div>Vue3 + Naive UI + Pinia + TypeScript + Tailwind CSS</div>
     <div>请尝试按 <code>F12</code> 键或 <code>Ctrl+Shift+I</code> 打开开发工具</div>
     <n-button type="default" color="rgb(66, 211, 146)" ghost round @click="ipcHandle">

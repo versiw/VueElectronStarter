@@ -1,5 +1,4 @@
 import globalConfig from '@config/index'
-import ThemeConfig from '@config/theme'
 import { ref, watch, watchEffect } from 'vue'
 
 const temp = globalConfig.themeConfig
@@ -8,7 +7,7 @@ const initThemeConfig = JSON.parse(JSON.stringify(temp))
 const defaultThemeConfig = JSON.parse(JSON.stringify(initThemeConfig))
 
 export const useThemeConfig = () => {
-  const themeConfig = ref<ThemeConfig>(defaultThemeConfig)
+  const themeConfig = ref<Web.Theme.ThemeConfig>(defaultThemeConfig)
 
   watchEffect(() => {
     console.log(`++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++`)
