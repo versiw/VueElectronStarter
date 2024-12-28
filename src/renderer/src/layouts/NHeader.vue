@@ -4,7 +4,7 @@ import ElectronIcon24 from '@renderer/icons/ElectronIcon24.vue'
 import { renderIcon } from '@renderer/utils/common'
 import { useDrawer } from '@renderer/hooks/common/drawer'
 import ThemeDrawer from '@renderer/layouts/ThemeDrawer.vue'
-import { useThemeConfig } from '@renderer/hooks/common/useThemeConfig'
+import { useThemeConfig } from '@renderer/hooks/layout/useThemeConfig'
 
 defineComponent({
   name: 'NHeader'

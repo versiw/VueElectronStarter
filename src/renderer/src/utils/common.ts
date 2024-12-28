@@ -7,7 +7,7 @@ import { Component, computed, h } from 'vue'
 //   return () => h(NIcon, null, { default: () => h(icon) })
 // }
 
-import { useThemeConfig } from '@renderer/hooks/common/useThemeConfig'
+import { useThemeConfig } from '@renderer/hooks/layout/useThemeConfig'
 
 const { themeConfig } = useThemeConfig()
 

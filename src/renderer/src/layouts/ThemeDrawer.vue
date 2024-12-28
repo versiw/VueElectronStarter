@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { renderIcon } from '@renderer/utils/common'
-import { useThemeConfig } from '@renderer/hooks/common/useThemeConfig'
+import { useThemeConfig } from '@renderer/hooks/layout/useThemeConfig'
 
 const props = defineProps<{
   active: boolean
@@ -33,70 +33,7 @@ watch(
   }
 )
 
-const { themeConfig, copyThemeConfigToJSON, resetThemeConfig } = useThemeConfig()
-
-const animationSelect = ref('fade')
-
-const options2Object = {
-  fade: {
-    enter: 'animate__fadeInLeft',
-    leave: 'animate__fadeOutRight'
-  },
-  zoom: {
-    enter: 'animate__zoomIn',
-    leave: 'animate__zoomOut'
-  },
-  slide: {
-    enter: 'animate__slideInDown',
-    leave: 'animate__slideOutDown'
-  },
-  bounce: {
-    enter: 'animate__bounceIn',
-    leave: 'animate__bounceOut'
-  },
-  flip: {
-    enter: 'animate__flipInY',
-    leave: 'animate__flipOutY'
-  }
-}
-
-const options = [
-  {
-    label: '渐变',
-    value: 'fade',
-    disabled: false
-  },
-  {
-    label: '缩放',
-    value: 'zoom',
-    disabled: false
-  },
-  {
-    label: '滑动',
-    value: 'slide',
-    disabled: false
-  },
-  {
-    label: '弹跳',
-    value: 'bounce',
-    disabled: false
-  },
-  {
-    label: '翻转',
-    value: 'flip',
-    disabled: false
-  }
-]
-
-watch(
-  () => animationSelect.value,
-  (newVal) => {
-    themeConfig.value.animationScheme = options2Object[newVal]
-  },
-  {
-    immediate: true
-  }
-)
+const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThemeConfig()
 </script>
 
 <template>
@@ -267,7 +204,11 @@ watch(
           <div v-if="themeConfig.animation">
             <n-flex class="justify-between">
               <div>页面切换动画效果</div>
-              <n-select v-model:value="animationSelect" class="w-32" :options="options" />
+              <n-select
+                v-model:value="themeConfig.animationScheme.type"
+                class="w-32"
+                :options="options"
+              />
             </n-flex>
           </div>
         </n-flex>
