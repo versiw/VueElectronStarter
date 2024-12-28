@@ -4,7 +4,7 @@ import { RouterView } from 'vue-router'
 import { useMenu } from '@renderer/hooks/layout/menu'
 import NHeader from '@renderer/layouts/NHeader.vue'
 import { useMessage } from 'naive-ui'
-import { useThemeConfig } from '@renderer/hooks/common/useThemeConfig'
+import { useThemeConfig } from '@renderer/hooks/layout/useThemeConfig'
 
 window.$message = useMessage()
 
@@ -51,9 +51,9 @@ const { themeConfig } = useThemeConfig()
                 name="custom"
                 mode="out-in"
                 appear
-                :enter-active-class="`animate__animated ${themeConfig.animationScheme.enter} animate__faster`"
-                :leave-active-class="`animate__animated ${themeConfig.animationScheme.leave} animate__faster`"
-                :appear-active-class="`animate__animated ${themeConfig.animationScheme.enter} animate__faster`"
+                :enter-active-class="`animate__animated ${themeConfig.animationScheme.transition.enter} animate__faster`"
+                :leave-active-class="`animate__animated ${themeConfig.animationScheme.transition.leave} animate__faster`"
+                :appear-active-class="`animate__animated ${themeConfig.animationScheme.transition.enter} animate__faster`"
               >
                 <keep-alive>
                   <component :is="Component" />

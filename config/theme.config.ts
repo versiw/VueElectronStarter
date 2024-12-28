@@ -11,20 +11,23 @@ const themeConfig: ThemeConfig = {
     errorColor: '#FF4F81',
     primaryColorHover: '#9462FF',
     primaryColorPressed: '#9462FF',
-    successColorHover: '#9462FF',
-    successColorPressed: '#9462FF',
-    warningColorHover: '#53FFCE',
-    warningColorPressed: '#53FFCE',
-    errorColorHover: '#FFB953',
-    errorColorPressed: '#FFB953',
+    successColorHover: '#53FFCE',
+    successColorPressed: '#53FFCE',
+    warningColorHover: '#FFB953',
+    warningColorPressed: '#FFB953',
+    errorColorHover: '#FF4F81',
+    errorColorPressed: '#FF4F81',
     infoColorHover: '#9462FF',
     infoColorPressed: '#9462FF'
   },
   followPrimaryColor: true,
   animation: true,
   animationScheme: {
-    enter: 'animate__fadeInLeft',
-    leave: 'animate__fadeOutRight'
+    type: 'fade',
+    transition: {
+      enter: 'animate__fadeInLeft',
+      leave: 'animate__fadeOutRight'
+    }
   }
 }
 

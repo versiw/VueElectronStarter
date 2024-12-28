@@ -32,7 +32,14 @@ export default interface ThemeConfig {
   animation: boolean
   // 页面切换动画
   animationScheme: {
-    enter: string
-    leave: string
+    // 动画类型
+    type: string
+    // 过渡特效
+    transition: {
+      // 进入特效
+      enter: string
+      // 离开特效
+      leave: string
+    }
   }
 }

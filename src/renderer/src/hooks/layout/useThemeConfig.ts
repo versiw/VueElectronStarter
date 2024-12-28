@@ -90,6 +90,67 @@ export const useThemeConfig = () => {
     }
   )
 
+  const options2Object = {
+    fade: {
+      enter: 'animate__fadeInLeft',
+      leave: 'animate__fadeOutRight'
+    },
+    zoom: {
+      enter: 'animate__zoomIn',
+      leave: 'animate__zoomOut'
+    },
+    slide: {
+      enter: 'animate__slideInDown',
+      leave: 'animate__slideOutDown'
+    },
+    bounce: {
+      enter: 'animate__bounceIn',
+      leave: 'animate__bounceOut'
+    },
+    flip: {
+      enter: 'animate__flipInY',
+      leave: 'animate__flipOutY'
+    }
+  }
+
+  const options = [
+    {
+      label: '渐变',
+      value: 'fade',
+      disabled: false
+    },
+    {
+      label: '缩放',
+      value: 'zoom',
+      disabled: false
+    },
+    {
+      label: '滑动',
+      value: 'slide',
+      disabled: false
+    },
+    {
+      label: '弹跳',
+      value: 'bounce',
+      disabled: false
+    },
+    {
+      label: '翻转',
+      value: 'flip',
+      disabled: false
+    }
+  ]
+
+  watch(
+    () => themeConfig.value.animationScheme.type,
+    (newVal) => {
+      themeConfig.value.animationScheme.transition = options2Object[newVal]
+    },
+    {
+      immediate: true
+    }
+  )
+
   const copyThemeConfigToJSON = async () => {
     try {
       const jsonString = JSON.stringify(themeConfig.value, null, 2)
@@ -106,5 +167,5 @@ export const useThemeConfig = () => {
     console.log('已重置主题配置')
   }
 
-  return { themeConfig, copyThemeConfigToJSON, resetThemeConfig }
+  return { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig }
 }
