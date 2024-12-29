@@ -11,13 +11,19 @@ const naiveDarkTheme = computed(() => (themeConfig.value.themeScheme === 'dark' 
 
 const themeOverrides = computed(() => ({
   common: {
-    ...themeConfig.value.themeColor
+    ...themeConfig.value.themeColor.common
+  },
+  Layout: {
+    ...(themeConfig.value.themeScheme === 'dark'
+      ? themeConfig.value.themeColor.layout.dark
+      : themeConfig.value.themeColor.layout.light)
   }
 }))
 </script>
 
 <template>
   <n-config-provider :theme-overrides="themeOverrides" :theme="naiveDarkTheme" class="h-full">
-    <n-message-provider> <Layout></Layout></n-message-provider>
+    <n-message-provider><Layout></Layout></n-message-provider>
+    <n-global-style />
   </n-config-provider>
 </template>

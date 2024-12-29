@@ -33,30 +33,46 @@ declare namespace Renderer {
        *
        * 详见 https://www.naiveui.com/zh-CN/light/docs/theme#use-theme-vars */
       themeColor: {
-        /**主色 */
-        primaryColor: string
-        primaryColorHover?: string
-        primaryColorPressed?: string
+        common: {
+          /**主色 */
+          primaryColor: string
+          primaryColorHover?: string
+          primaryColorPressed?: string
 
-        /**信息色 */
-        infoColor: string
-        infoColorHover?: string
-        infoColorPressed?: string
+          /**信息色 */
+          infoColor: string
+          infoColorHover?: string
+          infoColorPressed?: string
 
-        /**成功色 */
-        successColor: string
-        successColorHover?: string
-        successColorPressed?: string
+          /**成功色 */
+          successColor: string
+          successColorHover?: string
+          successColorPressed?: string
 
-        /**警告色 */
-        warningColor: string
-        warningColorHover?: string
-        warningColorPressed?: string
+          /**警告色 */
+          warningColor: string
+          warningColorHover?: string
+          warningColorPressed?: string
 
-        /**错误色 */
-        errorColor: string
-        errorColorHover?: string
-        errorColorPressed?: string
+          /**错误色 */
+          errorColor: string
+          errorColorHover?: string
+          errorColorPressed?: string
+        }
+        layout: {
+          light: {
+            color: string
+            headerColor: string
+            footerColor: string
+            siderColor: string
+          }
+          dark: {
+            color: string
+            headerColor: string
+            footerColor: string
+            siderColor: string
+          }
+        }
       }
 
       /**
@@ -64,6 +80,12 @@ declare namespace Renderer {
        * @type {boolean}
        */
       followPrimaryColor: boolean
+
+      /**
+       * 是否自定义明暗
+       * @type {boolean}
+       */
+      customTheme: boolean
 
       /**
        * 是否开启页面切换动画

@@ -18,19 +18,19 @@ export const useThemeConfig = () => {
   })
 
   const handleColorChange = (newVal, colorGroup) => {
-    themeConfig.value.themeColor[colorGroup + 'Hover'] = newVal
-    themeConfig.value.themeColor[colorGroup + 'Pressed'] = newVal
+    themeConfig.value.themeColor.common[colorGroup + 'Hover'] = newVal
+    themeConfig.value.themeColor.common[colorGroup + 'Pressed'] = newVal
   }
 
-  let lastInfoColor = themeConfig.value.themeColor.infoColor
+  let lastInfoColor = themeConfig.value.themeColor.common.infoColor
 
   // 监听主题颜色变化
   watch(
     () => [
-      themeConfig.value.themeColor.primaryColor,
-      themeConfig.value.themeColor.successColor,
-      themeConfig.value.themeColor.warningColor,
-      themeConfig.value.themeColor.errorColor
+      themeConfig.value.themeColor.common.primaryColor,
+      themeConfig.value.themeColor.common.successColor,
+      themeConfig.value.themeColor.common.warningColor,
+      themeConfig.value.themeColor.common.errorColor
     ],
     ([newPrimaryVal, newSuccessVal, newWarningVal, newErrorVal]) => {
       handleColorChange(newPrimaryVal, 'primaryColor')
@@ -46,10 +46,10 @@ export const useThemeConfig = () => {
   )
 
   watch(
-    () => themeConfig.value.themeColor.primaryColor,
+    () => themeConfig.value.themeColor.common.primaryColor,
     (newPrimaryVal) => {
       if (themeConfig.value.followPrimaryColor) {
-        themeConfig.value.themeColor.infoColor = newPrimaryVal
+        themeConfig.value.themeColor.common.infoColor = newPrimaryVal
         handleColorChange(newPrimaryVal, 'infoColor')
       }
     },
@@ -60,7 +60,7 @@ export const useThemeConfig = () => {
   )
 
   watch(
-    () => themeConfig.value.themeColor.infoColor,
+    () => themeConfig.value.themeColor.common.infoColor,
     (newVal) => {
       if (!themeConfig.value.followPrimaryColor) {
         lastInfoColor = newVal
@@ -78,9 +78,10 @@ export const useThemeConfig = () => {
     () => themeConfig.value.followPrimaryColor,
     (newVal) => {
       if (newVal) {
-        themeConfig.value.themeColor.infoColor = themeConfig.value.themeColor.primaryColor
+        themeConfig.value.themeColor.common.infoColor =
+          themeConfig.value.themeColor.common.primaryColor
       } else {
-        themeConfig.value.themeColor.infoColor = lastInfoColor
+        themeConfig.value.themeColor.common.infoColor = lastInfoColor
       }
     },
     {
@@ -147,6 +148,23 @@ export const useThemeConfig = () => {
     },
     {
       immediate: true
+    }
+  )
+
+  watch(
+    () => themeConfig.value.customTheme,
+    (newVal) => {
+      if (!newVal) {
+        const layout = themeConfig.value.themeColor.layout
+        Object.keys(layout).forEach((mode) => {
+          Object.keys(layout[mode]).forEach((colorKey) => {
+            layout[mode][colorKey] = ''
+          })
+        })
+      }
+    },
+    {
+      immediate: true // 立即执行一次 watch，以便在组件初始化时也检查条件
     }
   )
 

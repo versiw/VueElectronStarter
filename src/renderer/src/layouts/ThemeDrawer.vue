@@ -34,6 +34,66 @@ watch(
   }
 )
 
+const contentColor = computed({
+  get: () => {
+    return themeConfig.value.themeScheme === 'dark'
+      ? themeConfig.value.themeColor.layout.dark.color
+      : themeConfig.value.themeColor.layout.light.color
+  },
+  set: (newValue) => {
+    if (themeConfig.value.themeScheme === 'dark') {
+      themeConfig.value.themeColor.layout.dark.color = newValue
+    } else {
+      themeConfig.value.themeColor.layout.light.color = newValue
+    }
+  }
+})
+
+const headerColor = computed({
+  get: () => {
+    return themeConfig.value.themeScheme === 'dark'
+      ? themeConfig.value.themeColor.layout.dark.headerColor
+      : themeConfig.value.themeColor.layout.light.headerColor
+  },
+  set: (newValue) => {
+    if (themeConfig.value.themeScheme === 'dark') {
+      themeConfig.value.themeColor.layout.dark.headerColor = newValue
+    } else {
+      themeConfig.value.themeColor.layout.light.headerColor = newValue
+    }
+  }
+})
+
+const siderColor = computed({
+  get: () => {
+    return themeConfig.value.themeScheme === 'dark'
+      ? themeConfig.value.themeColor.layout.dark.siderColor
+      : themeConfig.value.themeColor.layout.light.siderColor
+  },
+  set: (newValue) => {
+    if (themeConfig.value.themeScheme === 'dark') {
+      themeConfig.value.themeColor.layout.dark.siderColor = newValue
+    } else {
+      themeConfig.value.themeColor.layout.light.siderColor = newValue
+    }
+  }
+})
+
+const footerColor = computed({
+  get: () => {
+    return themeConfig.value.themeScheme === 'dark'
+      ? themeConfig.value.themeColor.layout.dark.footerColor
+      : themeConfig.value.themeColor.layout.light.footerColor
+  },
+  set: (newValue) => {
+    if (themeConfig.value.themeScheme === 'dark') {
+      themeConfig.value.themeColor.layout.dark.footerColor = newValue
+    } else {
+      themeConfig.value.themeColor.layout.light.footerColor = newValue
+    }
+  }
+})
+
 const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThemeConfig()
 </script>
 
@@ -50,10 +110,10 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
         <n-flex vertical class="w-full items-center justify-center">
           <n-divider> 主题模式 </n-divider>
           <n-tabs
+            v-model:value="themeConfig.themeScheme"
             type="segment"
             animated
             class="w-1/3"
-            :default-value="themeConfig.themeScheme"
             @update:value="(tabName: 'light' | 'dark') => (themeConfig.themeScheme = tabName)"
           >
             <n-tab-pane name="light" :tab="renderIcon('Sunny')"> </n-tab-pane>
@@ -72,28 +132,28 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
                   <n-layout-header
                     class="layout-header h-4 rounded-md"
                     :style="{
-                      backgroundColor: themeConfig.themeColor.primaryColor
+                      backgroundColor: themeConfig.themeColor.common.primaryColor
                     }"
                   ></n-layout-header>
                   <n-layout has-sider class="bg-transparent">
                     <n-layout-sider
                       class="layout-sider w-4 rounded-md mt-1 mr-1 bg-opacity-50 bg-blend-multiply"
                       :style="{
-                        backgroundColor: themeConfig.themeColor.primaryColor
+                        backgroundColor: themeConfig.themeColor.common.primaryColor
                       }"
                     ></n-layout-sider>
                     <n-layout class="bg-transparent">
                       <n-layout-content
                         class="layout-content h-10 rounded-md mt-1"
                         :style="{
-                          backgroundColor: themeConfig.themeColor.primaryColor
+                          backgroundColor: themeConfig.themeColor.common.primaryColor
                         }"
                       >
                       </n-layout-content>
                       <n-layout-footer
                         class="layout-footer h-4 rounded-md mt-1"
                         :style="{
-                          backgroundColor: themeConfig.themeColor.primaryColor
+                          backgroundColor: themeConfig.themeColor.common.primaryColor
                         }"
                       ></n-layout-footer>
                     </n-layout>
@@ -111,21 +171,21 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
                   <n-layout-header
                     class="layout-header h-4 rounded-md"
                     :style="{
-                      backgroundColor: themeConfig.themeColor.primaryColor
+                      backgroundColor: themeConfig.themeColor.common.primaryColor
                     }"
                   ></n-layout-header>
                   <n-layout has-sider class="bg-transparent">
                     <n-layout-sider
                       class="layout-sider w-4 h-14 rounded-md mt-1 mr-1 bg-opacity-50 bg-blend-multiply"
                       :style="{
-                        backgroundColor: themeConfig.themeColor.primaryColor
+                        backgroundColor: themeConfig.themeColor.common.primaryColor
                       }"
                     ></n-layout-sider>
                     <n-layout class="bg-transparent">
                       <n-layout-content
                         class="layout-content h-14 rounded-md mt-1"
                         :style="{
-                          backgroundColor: themeConfig.themeColor.primaryColor
+                          backgroundColor: themeConfig.themeColor.common.primaryColor
                         }"
                       >
                       </n-layout-content>
@@ -142,7 +202,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
           <n-flex class="justify-between">
             <div>主色</div>
             <n-color-picker
-              v-model:value="themeConfig.themeColor.primaryColor"
+              v-model:value="themeConfig.themeColor.common.primaryColor"
               class="w-24"
               :modes="['hex', 'rgb', 'hsl']"
               show-preview
@@ -157,7 +217,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
               </n-space>
             </div>
             <n-color-picker
-              v-model:value="themeConfig.themeColor.infoColor"
+              v-model:value="themeConfig.themeColor.common.infoColor"
               :disabled="themeConfig.followPrimaryColor"
               class="w-24"
               :modes="['hex', 'rgb', 'hsl']"
@@ -168,7 +228,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
           <n-flex class="justify-between">
             <div>成功色</div>
             <n-color-picker
-              v-model:value="themeConfig.themeColor.successColor"
+              v-model:value="themeConfig.themeColor.common.successColor"
               class="w-24"
               :modes="['hex', 'rgb', 'hsl']"
               show-preview
@@ -178,7 +238,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
           <n-flex class="justify-between">
             <div>警告色</div>
             <n-color-picker
-              v-model:value="themeConfig.themeColor.warningColor"
+              v-model:value="themeConfig.themeColor.common.warningColor"
               class="w-24"
               :modes="['hex', 'rgb', 'hsl']"
               show-preview
@@ -188,12 +248,78 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
           <n-flex class="justify-between">
             <div>错误色</div>
             <n-color-picker
-              v-model:value="themeConfig.themeColor.errorColor"
+              v-model:value="themeConfig.themeColor.common.errorColor"
               class="w-24"
               :modes="['hex', 'rgb', 'hsl']"
               show-preview
               :show-alpha="false"
             />
+          </n-flex>
+          <n-divider>
+            <n-flex class="justify-center">
+              <div>
+                <n-space><div>自定义明暗主题色</div> </n-space>
+              </div>
+              <n-switch v-model:value="themeConfig.customTheme" />
+            </n-flex>
+          </n-divider>
+          <n-flex v-if="themeConfig.customTheme" vertical>
+            <n-flex class="justify-center">
+              <n-space class="flex items-center">当前定制模式：</n-space>
+              <n-space
+                ><n-button
+                  ghost
+                  size="small"
+                  :render-icon="renderIcon(themeConfig.themeScheme === 'dark' ? 'Moon' : 'Sunny')"
+                  @click="
+                    themeConfig.themeScheme === 'dark'
+                      ? (themeConfig.themeScheme = 'light')
+                      : (themeConfig.themeScheme = 'dark')
+                  "
+                >
+                </n-button
+              ></n-space>
+            </n-flex>
+            <n-flex class="justify-between">
+              <div>内容区</div>
+              <n-color-picker
+                v-model:value="contentColor"
+                class="w-24"
+                :modes="['hex', 'rgb', 'hsl']"
+                show-preview
+                :show-alpha="false"
+              />
+            </n-flex>
+            <n-flex class="justify-between">
+              <div>标题栏</div>
+              <n-color-picker
+                v-model:value="headerColor"
+                class="w-24"
+                :modes="['hex', 'rgb', 'hsl']"
+                show-preview
+                :show-alpha="false"
+              />
+            </n-flex>
+            <n-flex class="justify-between">
+              <div>侧边栏</div>
+              <n-color-picker
+                v-model:value="siderColor"
+                class="w-24"
+                :modes="['hex', 'rgb', 'hsl']"
+                show-preview
+                :show-alpha="false"
+              />
+            </n-flex>
+            <n-flex class="justify-between">
+              <div>底部区</div>
+              <n-color-picker
+                v-model:value="footerColor"
+                class="w-24"
+                :modes="['hex', 'rgb', 'hsl']"
+                show-preview
+                :show-alpha="false"
+              />
+            </n-flex>
           </n-flex>
         </n-flex>
         <n-flex vertical>
