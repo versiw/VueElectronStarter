@@ -2,7 +2,7 @@
 import Layout from '@renderer/layouts/Layout.vue'
 import { darkTheme } from 'naive-ui'
 import { computed } from 'vue'
-import { useThemeConfig } from '@renderer/hooks/layout/useThemeConfig'
+import { useThemeConfig } from '@renderer/layouts/hooks/useThemeConfig'
 import { NConfigProvider } from 'naive-ui'
 
 const { themeConfig } = useThemeConfig()

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { RouterView } from 'vue-router'
-import { useMenu } from '@renderer/hooks/layout/menu'
+import { useMenu } from '@renderer/layouts/hooks/useMenu'
 import NHeader from '@renderer/layouts/NHeader.vue'
 import { useMessage } from 'naive-ui'
-import { useThemeConfig } from '@renderer/hooks/layout/useThemeConfig'
+import { useThemeConfig } from '@renderer/layouts/hooks/useThemeConfig'
 
 window.$message = useMessage()
 

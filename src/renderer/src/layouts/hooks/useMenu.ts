@@ -1,4 +1,4 @@
-import iconMaps from '@renderer/icons/iconMaps'
+import iconMaps from '@renderer/utils/iconMaps'
 import { renderIconMenu } from '@renderer/utils/common'
 import { MenuOption } from 'naive-ui'
 import { computed, ref } from 'vue'

@@ -1,20 +1,20 @@
-import globalConfig from '@config/index'
+import { themeConfig } from '@config/index'
 import { ref, watch, watchEffect } from 'vue'
 
-const temp = globalConfig.themeConfig
+const temp = themeConfig
 const initThemeConfig = JSON.parse(JSON.stringify(temp))
 // const initThemeConfig = shallowRef(temp)
 const defaultThemeConfig = JSON.parse(JSON.stringify(initThemeConfig))
 
 export const useThemeConfig = () => {
-  const themeConfig = ref<Web.Theme.ThemeConfig>(defaultThemeConfig)
+  const themeConfig = ref<Renderer.Theme.ThemeConfig>(defaultThemeConfig)
 
   watchEffect(() => {
-    console.log(`++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++`)
-    console.log(`themeConfig changed to ${JSON.stringify(themeConfig.value)}`)
-    console.log(`temp changed to ${JSON.stringify(temp)}`)
-    console.log(`initThemeConfig changed to ${JSON.stringify(initThemeConfig)}`)
-    console.log(`++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++`)
+    // console.log(`++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++`)
+    // console.log(`themeConfig changed to ${JSON.stringify(themeConfig.value)}`)
+    // console.log(`temp changed to ${JSON.stringify(temp)}`)
+    // console.log(`initThemeConfig changed to ${JSON.stringify(initThemeConfig)}`)
+    // console.log(`++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++`)
   })
 
   const handleColorChange = (newVal, colorGroup) => {

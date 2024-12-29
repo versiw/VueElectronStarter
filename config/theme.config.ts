@@ -1,4 +1,4 @@
-const themeConfig: Web.Theme.ThemeConfig = {
+const themeConfig: Renderer.Theme.ThemeConfig = {
   themeScheme: 'dark',
   layoutScheme: 'default',
   themeColor: {

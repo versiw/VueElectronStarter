@@ -2,11 +2,10 @@ import { resolve } from 'path'
 import { defineConfig, externalizeDepsPlugin, swcPlugin } from 'electron-vite'
 import vue from '@vitejs/plugin-vue'
 import VueRouter from 'unplugin-vue-router/vite'
-import globalConfig from './config/index'
-
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { NaiveUiResolver } from 'unplugin-vue-components/resolvers'
+import { rendererConfig } from './config'
 
 export default defineConfig({
   main: {
@@ -23,18 +22,19 @@ export default defineConfig({
       }
     },
     plugins: [
-      globalConfig.webConfig.useUnpluginVueRouter
+      rendererConfig.useUnpluginVueRouter
         ? [
             VueRouter({
               routesFolder: 'src/renderer/src/views',
               extensions: ['.vue'],
               exclude: [],
-              dts: 'src/renderer/src/router/typed-router.d.ts'
+              dts: 'src/renderer/src/types/typed-router.d.ts'
             })
           ]
         : null,
       vue(),
       AutoImport({
+        dts: 'src/types/auto-imports.d.ts',
         imports: [
           'vue',
           {
@@ -43,6 +43,7 @@ export default defineConfig({
         ]
       }),
       Components({
+        dts: 'src/types/components.d.ts',
         resolvers: [NaiveUiResolver()]
       })
     ]

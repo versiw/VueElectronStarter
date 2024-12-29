@@ -1,4 +1,4 @@
-import iconMaps from '@renderer/icons/iconMaps'
+import iconMaps from '@renderer/utils/iconMaps'
 import { NIcon } from 'naive-ui'
 import { Component, computed, h } from 'vue'
 
@@ -7,7 +7,7 @@ import { Component, computed, h } from 'vue'
 //   return () => h(NIcon, null, { default: () => h(icon) })
 // }
 
-import { useThemeConfig } from '@renderer/hooks/layout/useThemeConfig'
+import { useThemeConfig } from '@renderer/layouts/hooks/useThemeConfig'
 
 const { themeConfig } = useThemeConfig()
 

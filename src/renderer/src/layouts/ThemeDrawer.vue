@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import type { DrawerPlacement } from 'naive-ui'
 import { ref, watch } from 'vue'
 import { renderIcon } from '@renderer/utils/common'
-import { useThemeConfig } from '@renderer/hooks/layout/useThemeConfig'
+import { useThemeConfig } from '@renderer/layouts/hooks/useThemeConfig'
 
 const props = defineProps<{
   active: boolean
-  placement: string
+  placement: DrawerPlacement
 }>()
 
 const drawerShow = ref(false)
@@ -53,7 +54,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
             animated
             class="w-1/3"
             :default-value="themeConfig.themeScheme"
-            @update:value="(tabName: string) => (themeConfig.themeScheme = tabName)"
+            @update:value="(tabName: 'light' | 'dark') => (themeConfig.themeScheme = tabName)"
           >
             <n-tab-pane name="light" :tab="renderIcon('Sunny')"> </n-tab-pane>
             <n-tab-pane name="dark" :tab="renderIcon('Moon')"> </n-tab-pane>
