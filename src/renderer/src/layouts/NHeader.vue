@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { defineComponent, toRefs } from 'vue'
-import ElectronIcon24 from '@renderer/icons/ElectronIcon24.vue'
+import VueElectronStarterLogo from '@renderer/icons/VueElectronStarterLogo.vue'
 import { renderIcon } from '@renderer/utils/common'
 import { useDrawer } from '@renderer/layouts/hooks/useDrawer'
 import ThemeDrawer from '@renderer/layouts/ThemeDrawer.vue'
@@ -22,13 +22,13 @@ const { themeConfig } = useThemeConfig()
     <n-flex class="flex items-center justify-between h-7 w-5/6">
       <n-flex class="flex justify-start">
         <n-icon size="28">
-          <ElectronIcon24 />
+          <VueElectronStarterLogo />
         </n-icon>
         <n-gradient-text
           class="text-lg font-bold"
           :gradient="{
-            from: 'rgb(66, 211, 146)',
-            to: 'rgb(100, 126, 255)'
+            from: '#9462FF',
+            to: '#58B37C'
           }"
         >
           VueElectronStarter

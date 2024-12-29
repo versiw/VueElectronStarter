@@ -22,8 +22,12 @@ const themeOverrides = computed(() => ({
 </script>
 
 <template>
-  <n-config-provider :theme-overrides="themeOverrides" :theme="naiveDarkTheme" class="h-full">
+  <n-config-provider
+    :theme-overrides="themeOverrides"
+    :theme="naiveDarkTheme"
+    class="w-full h-full"
+  >
     <n-message-provider><Layout></Layout></n-message-provider>
-    <n-global-style />
+    <!-- <n-global-style /> -->
   </n-config-provider>
 </template>

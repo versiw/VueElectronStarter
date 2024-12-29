@@ -1,41 +1,47 @@
 const themeConfig: Renderer.Theme.ThemeConfig = {
-  themeScheme: 'dark',
+  themeScheme: 'light',
   layoutScheme: 'default',
   themeColor: {
     common: {
       primaryColor: '#9462FF',
       infoColor: '#9462FF',
-      successColor: '#53FFCE',
-      warningColor: '#FFB953',
-      errorColor: '#FF4F81',
+      successColor: '#58B37C',
+      warningColor: '#F0A020',
+      errorColor: '#DE283B',
       primaryColorHover: '#9462FF',
       primaryColorPressed: '#9462FF',
-      successColorHover: '#53FFCE',
-      successColorPressed: '#53FFCE',
-      warningColorHover: '#FFB953',
-      warningColorPressed: '#FFB953',
-      errorColorHover: '#FF4F81',
-      errorColorPressed: '#FF4F81',
+      successColorHover: '#58B37C',
+      successColorPressed: '#58B37C',
+      warningColorHover: '#F0A020',
+      warningColorPressed: '#F0A020',
+      errorColorHover: '#DE283B',
+      errorColorPressed: '#DE283B',
       infoColorHover: '#9462FF',
       infoColorPressed: '#9462FF'
     },
     layout: {
       light: {
-        color: '#810505',
-        headerColor: '',
-        footerColor: '',
-        siderColor: ''
+        color: '#E5E5E5',
+        headerColor: '#B3B3B3',
+        headerBorderColor: '',
+        footerColor: '#E5E5E5',
+        footerBorderColor: '#B3B3B3',
+        siderColor: '#E5E5E5',
+        siderBorderColor: '#B3B3B3'
       },
       dark: {
-        color: '',
-        headerColor: '',
-        footerColor: '',
-        siderColor: ''
+        color: '#1E1E1E',
+        headerColor: '#454545',
+        headerBorderColor: '',
+        footerColor: '#1E1E1E',
+        footerBorderColor: '#454545',
+        siderColor: '#1E1E1E',
+        siderBorderColor: '#454545'
       }
     }
   },
   followPrimaryColor: true,
-  customTheme: false,
+  customTheme: true,
   animation: true,
   animationScheme: {
     type: 'fade',
@@ -45,5 +51,4 @@ const themeConfig: Renderer.Theme.ThemeConfig = {
     }
   }
 }
-
 export default themeConfig

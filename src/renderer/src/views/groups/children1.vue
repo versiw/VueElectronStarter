@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePage({
   meta: {
-    title: '子选项1',
+    title: '信息页',
     isHide: false,
     icon: '',
     iconAlt: ''
@@ -10,5 +10,12 @@ definePage({
 </script>
 
 <template>
-  <div>groups1 children1</div>
+  <div class="w-full h-full flex items-center justify-center">
+    <n-result
+      status="info"
+      title="信息"
+      description="我们今天的选择，在当时看可能是深思熟虑的，但放宽过去的眼界，回头看，都是命中注定"
+    >
+    </n-result>
+  </div>
 </template>

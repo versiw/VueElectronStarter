@@ -63,14 +63,20 @@ declare namespace Renderer {
           light: {
             color: string
             headerColor: string
+            headerBorderColor: string
             footerColor: string
+            footerBorderColor: string
             siderColor: string
+            siderBorderColor: string
           }
           dark: {
             color: string
             headerColor: string
+            headerBorderColor: string
             footerColor: string
+            footerBorderColor: string
             siderColor: string
+            siderBorderColor: stringl
           }
         }
       }

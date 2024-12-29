@@ -64,6 +64,21 @@ const headerColor = computed({
   }
 })
 
+const headerBorderColor = computed({
+  get: () => {
+    return themeConfig.value.themeScheme === 'dark'
+      ? themeConfig.value.themeColor.layout.dark.headerBorderColor
+      : themeConfig.value.themeColor.layout.light.headerBorderColor
+  },
+  set: (newValue) => {
+    if (themeConfig.value.themeScheme === 'dark') {
+      themeConfig.value.themeColor.layout.dark.headerBorderColor = newValue
+    } else {
+      themeConfig.value.themeColor.layout.light.headerBorderColor = newValue
+    }
+  }
+})
+
 const siderColor = computed({
   get: () => {
     return themeConfig.value.themeScheme === 'dark'
@@ -79,6 +94,21 @@ const siderColor = computed({
   }
 })
 
+const siderBorderColor = computed({
+  get: () => {
+    return themeConfig.value.themeScheme === 'dark'
+      ? themeConfig.value.themeColor.layout.dark.siderBorderColor
+      : themeConfig.value.themeColor.layout.light.siderBorderColor
+  },
+  set: (newValue) => {
+    if (themeConfig.value.themeScheme === 'dark') {
+      themeConfig.value.themeColor.layout.dark.siderBorderColor = newValue
+    } else {
+      themeConfig.value.themeColor.layout.light.siderBorderColor = newValue
+    }
+  }
+})
+
 const footerColor = computed({
   get: () => {
     return themeConfig.value.themeScheme === 'dark'
@@ -90,6 +120,21 @@ const footerColor = computed({
       themeConfig.value.themeColor.layout.dark.footerColor = newValue
     } else {
       themeConfig.value.themeColor.layout.light.footerColor = newValue
+    }
+  }
+})
+
+const footerBorderColor = computed({
+  get: () => {
+    return themeConfig.value.themeScheme === 'dark'
+      ? themeConfig.value.themeColor.layout.dark.footerBorderColor
+      : themeConfig.value.themeColor.layout.light.footerBorderColor
+  },
+  set: (newValue) => {
+    if (themeConfig.value.themeScheme === 'dark') {
+      themeConfig.value.themeColor.layout.dark.footerBorderColor = newValue
+    } else {
+      themeConfig.value.themeColor.layout.light.footerBorderColor = newValue
     }
   }
 })
@@ -301,6 +346,16 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
               />
             </n-flex>
             <n-flex class="justify-between">
+              <div>标题栏边框</div>
+              <n-color-picker
+                v-model:value="headerBorderColor"
+                class="w-24"
+                :modes="['hex', 'rgb', 'hsl']"
+                show-preview
+                :show-alpha="false"
+              />
+            </n-flex>
+            <n-flex class="justify-between">
               <div>侧边栏</div>
               <n-color-picker
                 v-model:value="siderColor"
@@ -311,9 +366,29 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
               />
             </n-flex>
             <n-flex class="justify-between">
+              <div>侧边栏边框</div>
+              <n-color-picker
+                v-model:value="siderBorderColor"
+                class="w-24"
+                :modes="['hex', 'rgb', 'hsl']"
+                show-preview
+                :show-alpha="false"
+              />
+            </n-flex>
+            <n-flex class="justify-between">
               <div>底部区</div>
               <n-color-picker
                 v-model:value="footerColor"
+                class="w-24"
+                :modes="['hex', 'rgb', 'hsl']"
+                show-preview
+                :show-alpha="false"
+              />
+            </n-flex>
+            <n-flex class="justify-between">
+              <div>底部区边框</div>
+              <n-color-picker
+                v-model:value="footerBorderColor"
                 class="w-24"
                 :modes="['hex', 'rgb', 'hsl']"
                 show-preview

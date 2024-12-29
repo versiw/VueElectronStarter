@@ -9,4 +9,4 @@ definePage({
 })
 </script>
 
-<template><router-view></router-view></template>
+<template><router-view class="h-full"></router-view></template>
