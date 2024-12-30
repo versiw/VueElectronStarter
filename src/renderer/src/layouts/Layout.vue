@@ -15,8 +15,8 @@ const { activeKey, menuOptions, handleMenuClick } = useMenu()
 const { themeConfig } = useThemeConfig()
 </script>
 <template>
-  <div class="h-screen relative">
-    <n-layout position="absolute">
+  <div class="h-full relative">
+    <n-layout position="absolute" class="h-full">
       <NHeader />
       <n-layout position="absolute" class="top-9 select-none" has-sider>
         <n-layout-sider
@@ -39,25 +39,24 @@ const { themeConfig } = useThemeConfig()
             @update:value="handleMenuClick"
           />
         </n-layout-sider>
-        <n-layout :native-scrollbar="false">
-          <n-layout-content content-style="padding: 24px">
-            <div v-if="themeConfig.animation">
-              <RouterView v-slot="{ Component }">
-                <transition
-                  name="custom"
-                  mode="out-in"
-                  appear
-                  :enter-active-class="`animate__animated ${themeConfig.animationScheme.transition.enter} animate__faster`"
-                  :leave-active-class="`animate__animated ${themeConfig.animationScheme.transition.leave} animate__faster`"
-                  :appear-active-class="`animate__animated ${themeConfig.animationScheme.transition.enter} animate__faster`"
-                >
-                  <keep-alive>
-                    <component :is="Component" />
-                  </keep-alive>
-                </transition>
-              </RouterView>
+        <n-layout-content content-style="padding: 24px;" :native-scrollbar="false">
+          <div v-if="themeConfig.animation">
+            <RouterView v-slot="{ Component }">
+              <transition
+                name="custom"
+                mode="out-in"
+                appear
+                :enter-active-class="`animate__animated ${themeConfig.animationScheme.transition.enter} animate__faster`"
+                :leave-active-class="`animate__animated ${themeConfig.animationScheme.transition.leave} animate__faster`"
+                :appear-active-class="`animate__animated ${themeConfig.animationScheme.transition.enter} animate__faster`"
+              >
+                <keep-alive>
+                  <component :is="Component" />
+                </keep-alive>
+              </transition>
+            </RouterView>
 
-              <!-- <transition
+            <!-- <transition
               :duration="{ enter: 1000, leave: 600 }"
               mode="out-in"
               appear
@@ -67,18 +66,17 @@ const { themeConfig } = useThemeConfig()
             >
               <RouterView />
             </transition> -->
-            </div>
-            <div v-else>
-              <RouterView />
-            </div>
-          </n-layout-content>
+          </div>
+          <div v-else>
+            <RouterView />
+          </div>
 
           <div v-if="themeConfig.layoutScheme === 'default'">
             <n-layout-footer position="absolute" class="h-12 p-1 flex items-center z-10" bordered>
               Copyright MIT © 2024 VueElectronStarter
             </n-layout-footer>
           </div>
-        </n-layout>
+        </n-layout-content>
       </n-layout>
     </n-layout>
   </div>
