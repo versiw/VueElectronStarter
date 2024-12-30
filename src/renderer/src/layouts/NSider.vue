@@ -1,0 +1,35 @@
+<script setup lang="ts">
+import { useMenu } from '@renderer/layouts/hooks/useMenu'
+
+defineComponent({
+  name: 'NSider'
+})
+
+const isCollapsed = ref(false)
+
+const { activeKey, menuOptions, handleMenuClick } = useMenu()
+</script>
+
+<template>
+  <NLayoutSider
+    :native-scrollbar="false"
+    bordered
+    collapse-mode="width"
+    :collapsed-width="64"
+    :width="192"
+    :collapsed="isCollapsed"
+    show-trigger="arrow-circle"
+    class="h-full"
+    @collapse="isCollapsed = true"
+    @expand="isCollapsed = false"
+  >
+    <NMenu
+      v-model:value="activeKey"
+      :options="menuOptions"
+      :collapsed="isCollapsed"
+      :collapsed-width="64"
+      :collapsed-icon-size="24"
+      @update:value="handleMenuClick"
+    />
+  </NLayoutSider>
+</template>

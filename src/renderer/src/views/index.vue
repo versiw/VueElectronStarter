@@ -39,5 +39,20 @@ const ipcHandle = () => window.electron.ipcRenderer.send('ping')
       <div>Chromium V {{ versions.chrome }}</div>
       <div>Node V {{ versions.node }}</div>
     </n-flex>
+    <n-flex vertical class="flex items-center justify-around">
+      <div class="flex items-center justify-between">Electron V {{ versions.electron }}</div>
+      <div>Chromium V {{ versions.chrome }}</div>
+      <div>Node V {{ versions.node }}</div>
+    </n-flex>
+    <n-flex vertical class="flex items-center justify-around">
+      <div class="flex items-center justify-between">Electron V {{ versions.electron }}</div>
+      <div>Chromium V {{ versions.chrome }}</div>
+      <div>Node V {{ versions.node }}</div>
+    </n-flex>
+    <n-flex vertical class="flex items-center justify-around">
+      <div class="flex items-center justify-between">Electron V {{ versions.electron }}</div>
+      <div>Chromium V {{ versions.chrome }}</div>
+      <div>Node V {{ versions.node }}</div>
+    </n-flex>
   </n-flex>
 </template>

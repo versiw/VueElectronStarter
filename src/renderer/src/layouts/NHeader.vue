@@ -17,14 +17,14 @@ const { active, placement, activate } = useDrawer()
 const { themeConfig } = useThemeConfig()
 </script>
 <template>
-  <n-layout-header class="h-9 p-1" style="-webkit-app-region: drag; user-select: none" bordered>
+  <NLayoutHeader class="h-9 p-1" style="-webkit-app-region: drag; user-select: none" bordered>
     <!-- <n-layout-header class="h-9 p-1" bordered> -->
-    <n-flex class="flex items-center justify-between h-7 w-5/6">
-      <n-flex class="flex justify-start">
-        <n-icon size="28">
+    <NFlex class="flex items-center justify-between h-7 w-5/6">
+      <NFlex class="flex justify-start">
+        <NIcon size="28">
           <VueElectronStarterLogo />
-        </n-icon>
-        <n-gradient-text
+        </NIcon>
+        <NGradientText
           class="text-lg font-bold"
           :gradient="{
             from: '#9462FF',
@@ -32,12 +32,12 @@ const { themeConfig } = useThemeConfig()
           }"
         >
           VueElectronStarter
-        </n-gradient-text>
-      </n-flex>
-      <n-flex class="flex flex-row-reverse justify-end">
-        <n-tooltip trigger="hover" placement="bottom-end">
+        </NGradientText>
+      </NFlex>
+      <NFlex class="flex flex-row-reverse justify-end">
+        <NTooltip trigger="hover" placement="bottom-end">
           <template #trigger>
-            <n-button
+            <NButton
               text
               strong
               size="small"
@@ -48,13 +48,13 @@ const { themeConfig } = useThemeConfig()
               style="-webkit-app-region: no-drag"
               @click="activate('right')"
             >
-            </n-button>
+            </NButton>
           </template>
           主题配置
-        </n-tooltip>
-        <n-tooltip trigger="hover" placement="bottom-end">
+        </NTooltip>
+        <NTooltip trigger="hover" placement="bottom-end">
           <template #trigger>
-            <n-button
+            <NButton
               text
               strong
               size="small"
@@ -69,17 +69,17 @@ const { themeConfig } = useThemeConfig()
                   : (themeConfig.themeScheme = 'dark')
               "
             >
-            </n-button>
+            </NButton>
           </template>
           主题模式
-        </n-tooltip>
-        <n-dropdown
+        </NTooltip>
+        <NDropdown
           :value="locale"
           trigger="hover"
           :options="localeOptions"
           @select="handleSelectLang"
         >
-          <n-tooltip trigger="hover" placement="left">
+          <NTooltip trigger="hover" placement="left">
             <template #trigger>
               <n-button
                 text
@@ -100,10 +100,10 @@ const { themeConfig } = useThemeConfig()
             /> -->
             </template>
             切换语言
-          </n-tooltip>
-        </n-dropdown>
-      </n-flex>
-    </n-flex>
+          </NTooltip>
+        </NDropdown>
+      </NFlex>
+    </NFlex>
     <ThemeDrawer v-model:active="active" :placement="placement" @update:active="active = $event" />
-  </n-layout-header>
+  </NLayoutHeader>
 </template>
