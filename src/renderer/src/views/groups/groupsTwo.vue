@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePage({
   meta: {
-    title: '文件路由菜单1',
+    title: '文件路由菜单2',
     isHide: false,
     icon: 'MenuOutline',
     iconAction: 'Menu'

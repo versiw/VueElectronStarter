@@ -27,6 +27,8 @@ const { isCollapsed, activeKey, menuOptions, handleMenuClick } = useMenu()
       :collapsed="isCollapsed"
       :collapsed-width="64"
       :collapsed-icon-size="24"
+      :root-indent="16"
+      :indent="12"
       @update:value="handleMenuClick"
     />
   </NLayoutSider>

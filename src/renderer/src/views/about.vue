@@ -4,7 +4,7 @@ definePage({
     title: '关于',
     isHide: false,
     icon: 'InformationCircleOutline',
-    iconAlt: 'InformationCircle'
+    iconAction: 'InformationCircle'
   }
 })
 </script>

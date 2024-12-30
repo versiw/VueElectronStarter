@@ -4,7 +4,7 @@ definePage({
     title: '首页',
     isHide: false,
     icon: 'HomeOutline',
-    iconAlt: 'Home'
+    iconAction: 'Home'
   }
 })
 
@@ -34,21 +34,6 @@ const ipcHandle = () => window.electron.ipcRenderer.send('ping')
     <div>Vue3 + Naive UI + Pinia + TypeScript + Tailwind CSS</div>
     <div>请尝试按 <code>F12</code> 键或 <code>Ctrl+Shift+I</code> 打开开发工具</div>
     <n-button type="primary" ghost round @click="ipcHandle"> Send IPC </n-button>
-    <n-flex vertical class="flex items-center justify-around">
-      <div class="flex items-center justify-between">Electron V {{ versions.electron }}</div>
-      <div>Chromium V {{ versions.chrome }}</div>
-      <div>Node V {{ versions.node }}</div>
-    </n-flex>
-    <n-flex vertical class="flex items-center justify-around">
-      <div class="flex items-center justify-between">Electron V {{ versions.electron }}</div>
-      <div>Chromium V {{ versions.chrome }}</div>
-      <div>Node V {{ versions.node }}</div>
-    </n-flex>
-    <n-flex vertical class="flex items-center justify-around">
-      <div class="flex items-center justify-between">Electron V {{ versions.electron }}</div>
-      <div>Chromium V {{ versions.chrome }}</div>
-      <div>Node V {{ versions.node }}</div>
-    </n-flex>
     <n-flex vertical class="flex items-center justify-around">
       <div class="flex items-center justify-between">Electron V {{ versions.electron }}</div>
       <div>Chromium V {{ versions.chrome }}</div>
