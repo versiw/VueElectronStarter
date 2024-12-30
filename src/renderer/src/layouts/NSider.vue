@@ -5,19 +5,17 @@ defineComponent({
   name: 'NSider'
 })
 
-const isCollapsed = ref(false)
-
-const { activeKey, menuOptions, handleMenuClick } = useMenu()
+const { isCollapsed, activeKey, menuOptions, handleMenuClick } = useMenu()
 </script>
 
 <template>
   <NLayoutSider
+    v-model:collapsed="isCollapsed"
     :native-scrollbar="false"
     bordered
     collapse-mode="width"
     :collapsed-width="64"
     :width="192"
-    :collapsed="isCollapsed"
     show-trigger="arrow-circle"
     class="h-full"
     @collapse="isCollapsed = true"

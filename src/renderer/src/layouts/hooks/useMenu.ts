@@ -7,17 +7,31 @@ import { RouteRecordNormalized, useRoute, useRouter } from 'vue-router'
 // TODO:: 基于文件系统的自动路由，需要完善符合NavieUI的MenuOption类型数据格式
 
 export const useMenu = () => {
+  const isCollapsed = ref(false)
+
+  // 监听菜单收缩状态
+  watch(
+    () => isCollapsed.value,
+    (newVal) => {
+      console.log('menu isCollapsed:', newVal)
+      // state.openKeys = newVal ? [] : getOpenKeys
+      // selectedKeys.value = currentRoute.name as string
+    }
+  )
+
   // 获取路由实例
   const router = useRouter()
+  console.log('useRouter object:', router)
 
   // 获取所有路由
   const routes = router.getRoutes()
-  console.log('useRouter object:', router)
   console.log('all routers:', routes)
 
   // 获取当前激活的路由
   const route = useRoute()
-  const activeKey = ref(route.fullPath)
+  const activeKey = ref(route.path)
+
+  console.log('active menu', route.matched)
 
   // 过滤掉子路由，并标记父路由为 isGroup
   const filteredRoutes = filterChildRoutes(routes)
@@ -58,13 +72,15 @@ export const useMenu = () => {
   })
 
   // 菜单项点击事件处理函数
-  const handleMenuClick = (key) => {
+  const handleMenuClick = (key: string, item: MenuOption) => {
     activeKey.value = key
-    console.log('activeKey:', activeKey.value)
+    console.log('active key:', key)
+    console.log('active item:', item)
     router.push(key)
   }
 
   return {
+    isCollapsed,
     menuOptions,
     activeKey,
     handleMenuClick
