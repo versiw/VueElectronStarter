@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePage({
   meta: {
-    title: '三级子选项2',
+    title: '三级子选项1',
     isHide: false,
     icon: '',
     iconAction: ''
@@ -10,6 +10,6 @@ definePage({
 </script>
 
 <template>
-  <n-result status="warning" title="警告" description="这是一个模板项目，意味着它有很多不足2">
+  <n-result status="warning" title="警告" description="这是一个模板项目，意味着它有很多不足1">
   </n-result>
 </template>

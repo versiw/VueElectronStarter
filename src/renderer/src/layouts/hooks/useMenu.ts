@@ -9,7 +9,10 @@ export const useMenu = () => {
 
   const router = useRouter()
 
-  const routes = router.getRoutes()
+  const routes = computed(() => {
+    const routerList = router.getRoutes()
+    return routerList
+  })
 
   const route = useRoute()
   const activeKey = ref(route.fullPath)
@@ -27,7 +30,27 @@ export const useMenu = () => {
     })
   }
 
-  const filteredRoutes = filterChildRoutes(routes)
+  const filterRoutesWithIsGroup = (routes: RouteRecordNormalized[]) => {
+    const pathMap = new Map<string, RouteRecordNormalized>()
+
+    routes.forEach((route) => {
+      if (pathMap.has(route.path)) {
+        const existingRoute = pathMap.get(route.path)
+        if (route.meta.isGroup && !existingRoute?.meta.isGroup) {
+          pathMap.set(route.path, route)
+        }
+      } else {
+        pathMap.set(route.path, route)
+      }
+    })
+
+    return Array.from(pathMap.values())
+  }
+
+  const filteredRoutes = computed(() => {
+    const filterRouteList = filterRoutesWithIsGroup(filterChildRoutes(routes.value))
+    return filterRouteList
+  })
 
   function createMenuOption(route: RouteRecordNormalized, parentPath = ''): MenuOption {
     const path = parentPath + route.path
@@ -66,7 +89,9 @@ export const useMenu = () => {
     return routes.filter((route) => !route.meta?.isHide).map((route) => createMenuOption(route))
   }
 
-  const menuOptions = computed<MenuOption[]>(() => transformRoutesToMenuOptions(filteredRoutes))
+  const menuOptions = computed<MenuOption[]>(() =>
+    transformRoutesToMenuOptions(filteredRoutes.value)
+  )
 
   const handleMenuClick = (key: string) => {
     activeKey.value = key

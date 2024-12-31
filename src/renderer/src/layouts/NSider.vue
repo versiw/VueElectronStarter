@@ -23,6 +23,7 @@ const { isCollapsed, activeKey, menuOptions, handleMenuClick } = useMenu()
   >
     <NMenu
       v-model:value="activeKey"
+      :accordion="true"
       :options="menuOptions"
       :collapsed="isCollapsed"
       :collapsed-width="64"

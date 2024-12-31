@@ -27,6 +27,7 @@ const routes: Array<RouteRecordRaw> = [
     path: '/groups',
     name: 'groups',
     component: () => import('@renderer/views/groups.vue'),
+    // component: () => import('@renderer/views/groups/children1.vue'),
     meta: {
       title: '传统路由分组1',
       isHide: false,
@@ -35,11 +36,22 @@ const routes: Array<RouteRecordRaw> = [
     },
     children: [
       {
+        path: '',
+        name: 'groups_index',
+        component: () => import('@renderer/views/groups/index.vue'),
+        meta: {
+          title: '二级子选项1',
+          isHide: false,
+          icon: '',
+          iconAction: ''
+        }
+      },
+      {
         path: 'children1',
         name: 'groups_children1',
         component: () => import('@renderer/views/groups/children1.vue'),
         meta: {
-          title: '二级子选项1',
+          title: '二级子选项2',
           isHide: false,
           icon: '',
           iconAction: ''
@@ -50,7 +62,7 @@ const routes: Array<RouteRecordRaw> = [
         name: 'groups_children2',
         component: () => import('@renderer/views/groups/children2.vue'),
         meta: {
-          title: '二级子选项2',
+          title: '二级子选项3',
           isHide: true,
           icon: '',
           iconAction: ''
@@ -68,11 +80,22 @@ const routes: Array<RouteRecordRaw> = [
         },
         children: [
           {
+            path: '',
+            name: 'groupsTwo_index',
+            component: () => import('@renderer/views/groups/groupsTwo/index.vue'),
+            meta: {
+              title: '三级子选项1',
+              isHide: false,
+              icon: '',
+              iconAction: ''
+            }
+          },
+          {
             path: 'children1',
             name: 'groupsTwo_children1',
             component: () => import('@renderer/views/groups/groupsTwo/children1.vue'),
             meta: {
-              title: '三级子选项1',
+              title: '三级子选项2',
               isHide: false,
               icon: '',
               iconAction: ''
