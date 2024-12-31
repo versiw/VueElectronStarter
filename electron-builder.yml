@@ -1,5 +1,5 @@
-appId: com.electron.app
-productName: vue-electron-starter
+appId: com.electron.app.vue-electron-starter
+productName: VueElectronStarter
 directories:
   buildResources: build
 files:
@@ -12,10 +12,18 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: vue-electron-starter
+  executableName: VueElectronStarter
+  icon: build/VES256.ico
+  requestedExecutionLevel: requireAdministrator
 nsis:
+  oneClick: false
+  perMachine: false
+  installerIcon: build/VES128.ico
+  uninstallerIcon: build/VES128.ico
+  shortcutName: VueElectronStarter
+  allowToChangeInstallationDirectory: true
+  # executableName: VueElectronStarter
   artifactName: ${name}-${version}-setup.${ext}
-  shortcutName: ${productName}
   uninstallDisplayName: ${productName}
   createDesktopShortcut: always
 mac:
@@ -41,3 +49,6 @@ npmRebuild: false
 publish:
   provider: generic
   url: https://example.com/auto-updates
+electronDownload:
+  # mirror: https://npmmirror.com/mirrors/electron/
+  mirror: hhttps://mirrors.huaweicloud.com/electron/
