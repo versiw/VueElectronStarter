@@ -12,6 +12,7 @@ export const useMenu = () => {
 
   const routes = computed(() => {
     const routerList = router.getRoutes()
+    // console.log('routes', routerList)
     return routerList
   })
 
@@ -50,6 +51,7 @@ export const useMenu = () => {
 
   const filteredRoutes = computed(() => {
     const filterRouteList = filterRoutesWithIsGroup(filterChildRoutes(routes.value))
+    // console.log('filterRouteList', filterRouteList)
     return filterRouteList
   })
 

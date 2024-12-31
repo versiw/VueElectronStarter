@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router/auto'
+import { createRouter, createWebHashHistory } from 'vue-router/auto'
 import routes from '@renderer/router/routes'
 import { rendererConfig } from '@config/index'
 
@@ -12,8 +12,7 @@ const importAutoRoutes = async () => {
 }
 
 const router = createRouter({
-  // history: createWebHistory(import.meta.env.BASE_URL),
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: rendererConfig.useUnpluginVueRouter ? await importAutoRoutes() : routes
 })
 

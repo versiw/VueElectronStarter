@@ -1,7 +1,7 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
-import icon from '../../resources/icon.png?asset'
+import icon from '../../resources/VES512.png?asset'
 
 // 自定义软件运行缓存路径
 const projectRootPath = process.cwd()
@@ -25,7 +25,7 @@ function createWindow(): void {
       symbolColor: 'gray'
     },
     autoHideMenuBar: true,
-    ...(process.platform === 'linux' ? { icon } : {}),
+    ...(process.platform === 'linux' ? { icon } : { icon }),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
