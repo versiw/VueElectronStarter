@@ -23,3 +23,7 @@ export const $t = i18n.global.t as Renderer.I18n.$T
 export function setLocale(locale: Renderer.I18n.LangType) {
   i18n.global.locale.value = locale
 }
+
+export function getLocale() {
+  return i18n.global.locale.value
+}

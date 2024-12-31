@@ -13,8 +13,7 @@ const drawerShow = ref(false)
 
 watch(
   () => props.active,
-  (newVal, oldVal) => {
-    console.log(`active changed from ${oldVal} to ${newVal}`)
+  (newVal) => {
     drawerShow.value = newVal
   },
   {
@@ -26,8 +25,7 @@ const emit = defineEmits(['update:active'])
 
 watch(
   () => drawerShow.value,
-  (newVal, oldVal) => {
-    console.log(`drawerShow changed from ${oldVal} to ${newVal}`)
+  (newVal) => {
     if (!newVal) {
       emit('update:active', false)
     }
@@ -150,10 +148,10 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
     :mask-closable="true"
     :close-on-esc="true"
   >
-    <n-drawer-content title="主题配置" :native-scrollbar="false">
+    <n-drawer-content :title="$t('theme.drawerTitle')" :native-scrollbar="false">
       <n-flex vertical>
         <n-flex vertical class="w-full items-center justify-center">
-          <n-divider> 主题模式 </n-divider>
+          <n-divider> {{ $t('theme.themeScheme') }} </n-divider>
           <n-tabs
             v-model:value="themeConfig.themeScheme"
             type="segment"
@@ -166,7 +164,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
           </n-tabs>
         </n-flex>
         <n-flex vertical>
-          <n-divider> 布局模式 </n-divider>
+          <n-divider> {{ $t('theme.layoutScheme') }} </n-divider>
           <n-flex>
             <n-tooltip trigger="hover">
               <template #trigger>
@@ -205,7 +203,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
                   </n-layout>
                 </n-layout>
               </template>
-              默认布局
+              {{ $t('theme.layoutMode.default') }}
             </n-tooltip>
             <n-tooltip trigger="hover">
               <template #trigger>
@@ -238,14 +236,14 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
                   </n-layout>
                 </n-layout>
               </template>
-              无底部布局
+              {{ $t('theme.layoutMode.noFooter') }}
             </n-tooltip>
           </n-flex>
         </n-flex>
         <n-flex vertical>
-          <n-divider> 主题颜色 </n-divider>
+          <n-divider> {{ $t('theme.themeColor') }} </n-divider>
           <n-flex class="justify-between">
-            <div>主色</div>
+            <div>{{ $t('theme.primaryColor') }}</div>
             <n-color-picker
               v-model:value="themeConfig.themeColor.common.primaryColor"
               class="w-24"
@@ -257,7 +255,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
           <n-flex class="justify-between">
             <div>
               <n-space
-                ><div>信息色</div>
+                ><div>{{ $t('theme.infoColor') }}</div>
                 <n-switch v-model:value="themeConfig.followPrimaryColor" />
               </n-space>
             </div>
@@ -271,7 +269,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
             />
           </n-flex>
           <n-flex class="justify-between">
-            <div>成功色</div>
+            <div>{{ $t('theme.successColor') }}</div>
             <n-color-picker
               v-model:value="themeConfig.themeColor.common.successColor"
               class="w-24"
@@ -281,7 +279,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
             />
           </n-flex>
           <n-flex class="justify-between">
-            <div>警告色</div>
+            <div>{{ $t('theme.warningColor') }}</div>
             <n-color-picker
               v-model:value="themeConfig.themeColor.common.warningColor"
               class="w-24"
@@ -291,7 +289,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
             />
           </n-flex>
           <n-flex class="justify-between">
-            <div>错误色</div>
+            <div>{{ $t('theme.errorColor') }}</div>
             <n-color-picker
               v-model:value="themeConfig.themeColor.common.errorColor"
               class="w-24"
@@ -303,14 +301,16 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
           <n-divider>
             <n-flex class="justify-center">
               <div>
-                <n-space><div>自定义明暗主题色</div> </n-space>
+                <n-space
+                  ><div>{{ $t('theme.customTheme') }}</div>
+                </n-space>
               </div>
               <n-switch v-model:value="themeConfig.customTheme" />
             </n-flex>
           </n-divider>
           <n-flex v-if="themeConfig.customTheme" vertical>
             <n-flex class="justify-center">
-              <n-space class="flex items-center">当前定制模式：</n-space>
+              <n-space class="flex items-center">{{ $t('theme.currentThemeScheme') }}：</n-space>
               <n-space
                 ><n-button
                   ghost
@@ -326,7 +326,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
               ></n-space>
             </n-flex>
             <n-flex class="justify-between">
-              <div>内容区</div>
+              <div>{{ $t('theme.contentColor') }}</div>
               <n-color-picker
                 v-model:value="contentColor"
                 class="w-24"
@@ -336,7 +336,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
               />
             </n-flex>
             <n-flex class="justify-between">
-              <div>标题栏</div>
+              <div>{{ $t('theme.headerColor') }}</div>
               <n-color-picker
                 v-model:value="headerColor"
                 class="w-24"
@@ -346,7 +346,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
               />
             </n-flex>
             <n-flex class="justify-between">
-              <div>标题栏边框</div>
+              <div>{{ $t('theme.headerBorderColor') }}</div>
               <n-color-picker
                 v-model:value="headerBorderColor"
                 class="w-24"
@@ -356,7 +356,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
               />
             </n-flex>
             <n-flex class="justify-between">
-              <div>侧边栏</div>
+              <div>{{ $t('theme.siderColor') }}</div>
               <n-color-picker
                 v-model:value="siderColor"
                 class="w-24"
@@ -366,7 +366,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
               />
             </n-flex>
             <n-flex class="justify-between">
-              <div>侧边栏边框</div>
+              <div>{{ $t('theme.siderBorderColor') }}</div>
               <n-color-picker
                 v-model:value="siderBorderColor"
                 class="w-24"
@@ -376,7 +376,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
               />
             </n-flex>
             <n-flex class="justify-between">
-              <div>底部区</div>
+              <div>{{ $t('theme.footerColor') }}</div>
               <n-color-picker
                 v-model:value="footerColor"
                 class="w-24"
@@ -386,7 +386,7 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
               />
             </n-flex>
             <n-flex class="justify-between">
-              <div>底部区边框</div>
+              <div>{{ $t('theme.footerBorderColor') }}</div>
               <n-color-picker
                 v-model:value="footerBorderColor"
                 class="w-24"
@@ -398,14 +398,14 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
           </n-flex>
         </n-flex>
         <n-flex vertical>
-          <n-divider> 页面功能 </n-divider>
+          <n-divider> {{ $t('theme.pageFunction') }} </n-divider>
           <n-flex class="justify-between">
-            <div>页面切换动画</div>
+            <div>{{ $t('theme.animation') }}</div>
             <n-switch v-model:value="themeConfig.animation" />
           </n-flex>
           <div v-if="themeConfig.animation">
             <n-flex class="justify-between">
-              <div>页面切换动画效果</div>
+              <div>{{ $t('theme.pageAnimationEffect') }}</div>
               <n-select
                 v-model:value="themeConfig.animationScheme.type"
                 class="w-32"
@@ -417,8 +417,12 @@ const { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig } = useThe
       </n-flex>
       <template #footer>
         <n-flex class="w-full justify-between">
-          <n-button type="error" ghost @click="resetThemeConfig"> 重置配置 </n-button>
-          <n-button type="primary" @click="copyThemeConfigToJSON"> 复制配置 </n-button>
+          <n-button type="error" ghost @click="resetThemeConfig">
+            {{ $t('theme.resetThemeConfig') }}
+          </n-button>
+          <n-button type="primary" @click="copyThemeConfigToJSON">
+            {{ $t('theme.copyThemeConfig') }}
+          </n-button>
         </n-flex>
       </template>
     </n-drawer-content>

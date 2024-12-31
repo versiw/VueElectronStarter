@@ -2,6 +2,7 @@
 definePage({
   meta: {
     title: '关于',
+    enUSTitle: 'About',
     isHide: false,
     icon: 'InformationCircleOutline',
     iconAction: 'InformationCircle'

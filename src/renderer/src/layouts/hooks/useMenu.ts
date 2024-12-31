@@ -3,6 +3,7 @@ import { renderIconMenu } from '@renderer/utils/common'
 import type { MenuOption } from 'naive-ui'
 import { computed, ref } from 'vue'
 import { RouteRecordNormalized, RouterLink, useRoute, useRouter } from 'vue-router'
+import { getLocale } from '@renderer/locales'
 
 export const useMenu = () => {
   const isCollapsed = ref(false)
@@ -65,7 +66,16 @@ export const useMenu = () => {
               path: path
             }
           },
-          { default: () => route.meta?.title || '未命名' }
+          {
+            default: () => {
+              switch (getLocale()) {
+                case 'zh-CN':
+                  return route.meta?.title || '未命名'
+                case 'en-US':
+                  return route.meta?.enUSTitle || 'untitled'
+              }
+            }
+          }
         ),
       key: path,
       icon: isActive

@@ -50,7 +50,7 @@ const { themeConfig } = useThemeConfig()
             >
             </NButton>
           </template>
-          主题配置
+          {{ $t('theme.drawerTitle') }}
         </NTooltip>
         <NTooltip trigger="hover" placement="bottom-end">
           <template #trigger>
@@ -71,7 +71,7 @@ const { themeConfig } = useThemeConfig()
             >
             </NButton>
           </template>
-          主题模式
+          {{ $t('theme.themeScheme') }}
         </NTooltip>
         <NDropdown
           :value="locale"
@@ -99,7 +99,7 @@ const { themeConfig } = useThemeConfig()
               @change-lang="appStore.changeLocale"
             /> -->
             </template>
-            切换语言
+            {{ $t('theme.switchLanguage') }}
           </NTooltip>
         </NDropdown>
       </NFlex>

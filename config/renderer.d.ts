@@ -132,6 +132,53 @@ declare namespace Renderer {
       system: {
         title: string
         description: string
+        techStack: string
+        tip: string
+        tip2: string
+      }
+      message: {
+        info: string
+        success: string
+        warning: string
+      }
+      theme: {
+        drawerTitle: string
+        themeScheme: string
+        switchLanguage: string
+        layoutScheme: string
+        layoutMode: {
+          default: string
+          noFooter: string
+        }
+        themeColor: string
+        primaryColor: string
+        infoColor: string
+        successColor: string
+        warningColor: string
+        errorColor: string
+        contentColor: string
+        headerColor: string
+        headerBorderColor: string
+        footerColor: string
+        footerBorderColor: string
+        siderColor: string
+        siderBorderColor: string
+        followPrimaryColor: string
+        customTheme: string
+        currentThemeScheme: string
+        pageFunction: string
+        animation: string
+        pageAnimationEffect: string
+        animationScheme: {
+          fade: string
+          zoom: string
+          slide: string
+          bounce: string
+          flip: string
+        }
+        resetThemeConfig: string
+        copyThemeConfig: string
+        copyThemeConfigSuccessMsg: string
       }
     }
     interface $T {

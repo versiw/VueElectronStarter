@@ -1,4 +1,5 @@
 import { themeConfig } from '@config/index'
+import { $t } from '@renderer/locales'
 import { ref, watch, watchEffect } from 'vue'
 
 const temp = themeConfig
@@ -64,7 +65,6 @@ export const useThemeConfig = () => {
     (newVal) => {
       if (!themeConfig.value.followPrimaryColor) {
         lastInfoColor = newVal
-        console.log('lastInfoColor', lastInfoColor)
       }
       handleColorChange(newVal, 'infoColor')
     },
@@ -113,33 +113,33 @@ export const useThemeConfig = () => {
     }
   }
 
-  const options = [
+  const options = computed(() => [
     {
-      label: '渐变',
+      label: $t('theme.animationScheme.fade'),
       value: 'fade',
       disabled: false
     },
     {
-      label: '缩放',
+      label: $t('theme.animationScheme.zoom'),
       value: 'zoom',
       disabled: false
     },
     {
-      label: '滑动',
+      label: $t('theme.animationScheme.slide'),
       value: 'slide',
       disabled: false
     },
     {
-      label: '弹跳',
+      label: $t('theme.animationScheme.bounce'),
       value: 'bounce',
       disabled: false
     },
     {
-      label: '翻转',
+      label: $t('theme.animationScheme.flip'),
       value: 'flip',
       disabled: false
     }
-  ]
+  ])
 
   watch(
     () => themeConfig.value.animationScheme.type,
@@ -169,8 +169,7 @@ export const useThemeConfig = () => {
     try {
       const jsonString = JSON.stringify(themeConfig.value, null, 2)
       await navigator.clipboard.writeText(jsonString)
-      console.log('JSON已复制到剪贴板')
-      window.$message?.success(`复制成功，请替换 config/theme.config.ts 中的变量 themeConfig`)
+      window.$message?.success(`${$t('theme.copyThemeConfigSuccessMsg')}`)
     } catch (error) {
       console.error('复制失败', error)
     }
@@ -178,7 +177,6 @@ export const useThemeConfig = () => {
 
   const resetThemeConfig = () => {
     Object.assign(themeConfig.value, JSON.parse(JSON.stringify(initThemeConfig)))
-    console.log('已重置主题配置')
   }
 
   return { themeConfig, options, copyThemeConfigToJSON, resetThemeConfig }

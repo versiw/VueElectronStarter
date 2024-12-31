@@ -2,6 +2,7 @@
 definePage({
   meta: {
     title: '三级子选项2',
+    enUSTitle: 'Tertiary sub-option 2',
     isHide: false,
     icon: '',
     iconAction: ''
@@ -10,6 +11,6 @@ definePage({
 </script>
 
 <template>
-  <n-result status="warning" title="警告" description="这是一个模板项目，意味着它有很多不足2">
+  <n-result status="warning" :title="$t('message.warning')" :description="$t('system.tip2')">
   </n-result>
 </template>

@@ -2,6 +2,7 @@
 definePage({
   meta: {
     title: '首页',
+    enUSTitle: 'Home',
     isHide: false,
     icon: 'HomeOutline',
     iconAction: 'Home'
@@ -10,7 +11,6 @@ definePage({
 
 import VueElectronStarterLogo from '@renderer/icons/VueElectronStarterLogo.vue'
 import { reactive } from 'vue'
-import { $t } from '@renderer/locales'
 const versions = reactive({ ...window.electron.process.versions })
 
 const ipcHandle = () => window.electron.ipcRenderer.send('ping')
@@ -31,8 +31,8 @@ const ipcHandle = () => window.electron.ipcRenderer.send('ping')
       {{ $t('system.title') }}
     </n-gradient-text>
     <div>{{ $t('system.description') }}</div>
-    <div>Vue3 + Naive UI + Pinia + TypeScript + Tailwind CSS</div>
-    <div>请尝试按 <code>F12</code> 键或 <code>Ctrl+Shift+I</code> 打开开发工具</div>
+    <div>{{ $t('system.techStack') }}</div>
+    <div>{{ $t('system.tip') }}</div>
     <n-button type="primary" ghost round @click="ipcHandle"> Send IPC </n-button>
     <n-flex vertical class="flex items-center justify-around">
       <div class="flex items-center justify-between">Electron V {{ versions.electron }}</div>
