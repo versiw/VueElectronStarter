@@ -158,13 +158,10 @@ export const useThemeConfig = () => {
         const layout = themeConfig.value.themeColor.layout
         Object.keys(layout).forEach((mode) => {
           Object.keys(layout[mode]).forEach((colorKey) => {
-            layout[mode][colorKey] = ''
+            layout[mode][colorKey] = null
           })
         })
       }
-    },
-    {
-      immediate: true // 立即执行一次 watch，以便在组件初始化时也检查条件
     }
   )
 

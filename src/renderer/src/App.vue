@@ -9,16 +9,26 @@ const { themeConfig } = useThemeConfig()
 
 const naiveDarkTheme = computed(() => (themeConfig.value.themeScheme === 'dark' ? darkTheme : null))
 
-const themeOverrides = computed(() => ({
-  common: {
-    ...themeConfig.value.themeColor.common
-  },
-  Layout: {
-    ...(themeConfig.value.themeScheme === 'dark'
-      ? themeConfig.value.themeColor.layout.dark
-      : themeConfig.value.themeColor.layout.light)
+const themeOverrides = computed(() => {
+  if (themeConfig.value.customTheme) {
+    return {
+      common: {
+        ...themeConfig.value.themeColor.common
+      },
+      Layout: {
+        ...(themeConfig.value.themeScheme === 'dark'
+          ? themeConfig.value.themeColor.layout.dark
+          : themeConfig.value.themeColor.layout.light)
+      }
+    }
+  } else {
+    return {
+      common: {
+        ...themeConfig.value.themeColor.common
+      }
+    }
   }
-}))
+})
 </script>
 
 <template>
