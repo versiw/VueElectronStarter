@@ -1,16 +1,15 @@
+<p align="center">
+  <img width="144px" src="https://versiw.github.io/VueElectronStarterDocs/logo.svg" />
+</p>
 
+<h1 align="center">VueElectronStarter</h1>
+<p align="center">简单的桌面应用模板</p>
+<p align="center"><b>基于 Vue3、Vite5、Naive UI 和 Electron</b></p>
 
-<div align='center'>
-    <h1>VueElectronStarter</h1>
-</div>
-
-## 简介
-
-基于 Vue3、Vite5、Naive UI 和 Electron 的桌面应用模板
 
 <div style="background-color: #332A21; color: white; padding: 20px;">
   <span style="color: orange;">⚠️ 注意</span><br>
-  作为项目模板的存在，意味着它有很多不足，我会尽可能尝试完善它
+  作为学习过程模板项目的存在，意味着它存在很多不足，我会尽可能尝试完善它
 </div>
 
 
