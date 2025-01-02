@@ -4,7 +4,7 @@ import messages from './locale'
 
 const i18n = createI18n({
   legacy: false, // 设置为 false，启用 composition API 模式
-  locale: sessionStorage.getItem('localeLang') || 'zh-CN',
+  locale: localStorage.getItem('localeLang') || 'zh-CN',
   fallbackLocale: 'en',
   messages
 })
@@ -22,6 +22,7 @@ export const $t = i18n.global.t as Renderer.I18n.$T
 
 export function setLocale(locale: Renderer.I18n.LangType) {
   i18n.global.locale.value = locale
+  localStorage.setItem('localeLang', locale)
 }
 
 export function getLocale() {
