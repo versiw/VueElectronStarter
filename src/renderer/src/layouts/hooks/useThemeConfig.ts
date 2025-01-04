@@ -1,5 +1,7 @@
+import { generate } from '@ant-design/colors'
 import { themeConfig } from '@config/index'
 import { $t } from '@renderer/locales'
+import { commonDark, commonLight } from 'naive-ui'
 import { ref, watch, watchEffect } from 'vue'
 
 const temp = themeConfig
@@ -10,6 +12,10 @@ const defaultThemeConfig = JSON.parse(JSON.stringify(initThemeConfig))
 export const useThemeConfig = () => {
   const themeConfig = ref<Renderer.Theme.ThemeConfig>(defaultThemeConfig)
 
+  let lastInfoColor = themeConfig.value.themeColor.common.infoColor
+
+  const generateColors = ref<string[]>([])
+
   watchEffect(() => {
     // console.log(`++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++`)
     // console.log(`themeConfig changed to ${JSON.stringify(themeConfig.value)}`)
@@ -18,22 +24,27 @@ export const useThemeConfig = () => {
     // console.log(`++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++`)
   })
 
-  const handleColorChange = (newVal, colorGroup) => {
-    themeConfig.value.themeColor.common[colorGroup + 'Hover'] = newVal
-    themeConfig.value.themeColor.common[colorGroup + 'Pressed'] = newVal
+  const handleColorChange = (newVal: string, colorGroup: string) => {
+    generateColors.value = generate(newVal, {
+      theme: themeConfig.value.themeScheme === 'dark' ? 'dark' : 'default',
+      backgroundColor:
+        themeConfig.value.themeScheme === 'dark' ? commonDark.bodyColor : commonLight.bodyColor
+    })
+    themeConfig.value.themeColor.common[colorGroup + 'Hover'] = generateColors.value[4]
+    themeConfig.value.themeColor.common[colorGroup + 'Suppl'] = generateColors.value[4]
+    themeConfig.value.themeColor.common[colorGroup + 'Pressed'] = generateColors.value[6]
   }
 
-  let lastInfoColor = themeConfig.value.themeColor.common.infoColor
-
-  // 监听主题颜色变化
+  /**监听主题模式、主题颜色变化，根据ant design colors设置配色 */
   watch(
     () => [
+      themeConfig.value.themeScheme,
       themeConfig.value.themeColor.common.primaryColor,
       themeConfig.value.themeColor.common.successColor,
       themeConfig.value.themeColor.common.warningColor,
       themeConfig.value.themeColor.common.errorColor
     ],
-    ([newPrimaryVal, newSuccessVal, newWarningVal, newErrorVal]) => {
+    ([, newPrimaryVal, newSuccessVal, newWarningVal, newErrorVal]) => {
       handleColorChange(newPrimaryVal, 'primaryColor')
       // handleColorChange(newInfoVal, 'infoColor')
       handleColorChange(newSuccessVal, 'successColor')
@@ -41,39 +52,39 @@ export const useThemeConfig = () => {
       handleColorChange(newErrorVal, 'errorColor')
     },
     {
-      deep: true,
       immediate: true
     }
   )
 
+  /**监听主题模式、主色修改，信息色跟随主色时，主色修改，同步修改信息色 */
   watch(
-    () => themeConfig.value.themeColor.common.primaryColor,
-    (newPrimaryVal) => {
+    () => [themeConfig.value.themeScheme, themeConfig.value.themeColor.common.primaryColor],
+    ([, newPrimaryVal]) => {
       if (themeConfig.value.followPrimaryColor) {
         themeConfig.value.themeColor.common.infoColor = newPrimaryVal
         handleColorChange(newPrimaryVal, 'infoColor')
       }
     },
     {
-      deep: true,
       immediate: true
     }
   )
 
+  /**监听主题模式、信息色变化，信息色不跟随主色时，记录最近设置的色值，并修改信息色 */
   watch(
-    () => themeConfig.value.themeColor.common.infoColor,
-    (newVal) => {
+    () => [themeConfig.value.themeScheme, themeConfig.value.themeColor.common.infoColor],
+    ([, newVal]) => {
       if (!themeConfig.value.followPrimaryColor) {
         lastInfoColor = newVal
       }
       handleColorChange(newVal, 'infoColor')
     },
     {
-      deep: true,
       immediate: true
     }
   )
 
+  /**监听信息色跟随主色按钮开关 */
   watch(
     () => themeConfig.value.followPrimaryColor,
     (newVal) => {
@@ -85,8 +96,21 @@ export const useThemeConfig = () => {
       }
     },
     {
-      deep: true,
       immediate: true
+    }
+  )
+
+  watch(
+    () => themeConfig.value.customTheme,
+    (newVal) => {
+      if (!newVal) {
+        const layout = themeConfig.value.themeColor.layout
+        Object.keys(layout).forEach((mode) => {
+          Object.keys(layout[mode]).forEach((colorKey) => {
+            layout[mode][colorKey] = null
+          })
+        })
+      }
     }
   )
 
@@ -151,23 +175,33 @@ export const useThemeConfig = () => {
     }
   )
 
-  watch(
-    () => themeConfig.value.customTheme,
-    (newVal) => {
-      if (!newVal) {
-        const layout = themeConfig.value.themeColor.layout
-        Object.keys(layout).forEach((mode) => {
-          Object.keys(layout[mode]).forEach((colorKey) => {
-            layout[mode][colorKey] = null
-          })
-        })
-      }
-    }
-  )
-
   const copyThemeConfigToJSON = async () => {
     try {
-      const jsonString = JSON.stringify(themeConfig.value, null, 2)
+      const themeConfigCopy = JSON.parse(JSON.stringify(themeConfig.value))
+
+      const filterObjectKeys = (obj, keysToKeep) => {
+        return Object.keys(obj)
+          .filter((key) => keysToKeep.includes(key))
+          .reduce((result, key) => {
+            result[key] = obj[key]
+            return result
+          }, {})
+      }
+
+      const commonKeysToKeep = [
+        'primaryColor',
+        'infoColor',
+        'successColor',
+        'warningColor',
+        'errorColor'
+      ]
+
+      themeConfigCopy.themeColor.common = filterObjectKeys(
+        themeConfigCopy.themeColor.common,
+        commonKeysToKeep
+      )
+
+      const jsonString = JSON.stringify(themeConfigCopy, null, 2)
       await navigator.clipboard.writeText(jsonString)
       window.$message?.success(`${$t('theme.copyThemeConfigSuccessMsg')}`)
     } catch (error) {

@@ -7,17 +7,7 @@ const themeConfig: Renderer.Theme.ThemeConfig = {
       infoColor: '#9462FF',
       successColor: '#58B37C',
       warningColor: '#F0A020',
-      errorColor: '#DE283B',
-      primaryColorHover: '#9462FF',
-      primaryColorPressed: '#9462FF',
-      successColorHover: '#58B37C',
-      successColorPressed: '#58B37C',
-      warningColorHover: '#F0A020',
-      warningColorPressed: '#F0A020',
-      errorColorHover: '#DE283B',
-      errorColorPressed: '#DE283B',
-      infoColorHover: '#9462FF',
-      infoColorPressed: '#9462FF'
+      errorColor: '#DE283B'
     },
     layout: {
       light: {
