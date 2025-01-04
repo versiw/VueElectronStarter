@@ -19,7 +19,7 @@ const { themeConfig } = useThemeConfig()
 <template>
   <NLayoutHeader class="h-9 p-1" style="-webkit-app-region: drag; user-select: none" bordered>
     <!-- <n-layout-header class="h-9 p-1" bordered> -->
-    <NFlex class="flex items-center justify-between h-7 w-5/6">
+    <NFlex class="flex items-center justify-between h-7" style="width: calc(100vw - 175px)">
       <NFlex class="flex justify-start">
         <NIcon size="28">
           <VueElectronStarterLogo />
