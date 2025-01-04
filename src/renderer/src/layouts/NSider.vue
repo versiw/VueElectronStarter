@@ -11,7 +11,6 @@ const { isCollapsed, activeKey, menuOptions, handleMenuClick } = useMenu()
 <template>
   <NLayoutSider
     v-model:collapsed="isCollapsed"
-    :native-scrollbar="false"
     bordered
     collapse-mode="width"
     :collapsed-width="64"

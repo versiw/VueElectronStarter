@@ -11,5 +11,8 @@ definePage({
 </script>
 
 <template>
-  <n-result status="info" :title="$t('message.info')" :description="$t('system.tip2')"> </n-result>
+  <div class="h-full w-full flex items-center justify-center">
+    <n-result status="info" :title="$t('message.info')" :description="$t('system.tip2')">
+    </n-result>
+  </div>
 </template>

@@ -27,8 +27,16 @@ const { themeConfig } = useThemeConfig()
       <NHeader />
       <NLayout position="absolute" class="top-9" has-sider>
         <NSider />
-        <NLayout :native-scrollbar="false" class="">
-          <NContent />
+        <NLayout
+          :content-style="{
+            height: 'calc(100%)',
+            width: '100%',
+            margin: 0,
+            padding: '24px',
+            paddingBottom: '36px'
+          }"
+        >
+          <NContent class="h-full w-full" />
           <div v-if="themeConfig.layoutScheme === 'default'"><NFooter /></div>
         </NLayout>
       </NLayout>

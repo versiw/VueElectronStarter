@@ -9,8 +9,15 @@ const { themeConfig } = useThemeConfig()
 </script>
 
 <template>
-  <NLayoutContent class="p-6 mb-9" :native-scrollbar="false">
-    <div v-if="themeConfig.animation">
+  <NLayoutContent
+    embedded
+    :native-scrollbar="false"
+    :content-style="{
+      height: 'calc(100%)',
+      width: '100%'
+    }"
+  >
+    <div v-if="themeConfig.animation" class="h-full w-full">
       <RouterView v-slot="{ Component }">
         <transition
           name="custom"
@@ -25,7 +32,6 @@ const { themeConfig } = useThemeConfig()
           </keep-alive>
         </transition>
       </RouterView>
-
       <!-- <transition
               :duration="{ enter: 1000, leave: 600 }"
               mode="out-in"

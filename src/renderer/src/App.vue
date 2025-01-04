@@ -36,6 +36,7 @@ const themeOverrides = computed(() => {
     :theme-overrides="themeOverrides"
     :theme="naiveDarkTheme"
     class="w-full h-full"
+    preflight-style-disabled
   >
     <n-message-provider><Layout></Layout></n-message-provider>
     <!-- <n-global-style /> -->

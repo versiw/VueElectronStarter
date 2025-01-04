@@ -12,13 +12,13 @@ console.log(
   'color:#9462FF; font-size:40px; font-weight:bold;'
 )
 
-const meta = document.createElement('meta')
-meta.name = 'naive-ui-style'
-document.head.appendChild(meta)
-
 const app = createApp(App)
 
 app.use(createPinia())
 setupI18n(app)
 app.use(router)
-app.mount('#app', true)
+
+const meta = document.createElement('meta')
+meta.name = 'naive-ui-style'
+document.head.appendChild(meta)
+app.mount('#app')

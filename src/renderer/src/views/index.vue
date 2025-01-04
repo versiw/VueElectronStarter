@@ -17,8 +17,8 @@ const ipcHandle = () => window.electron.ipcRenderer.send('ping')
 </script>
 
 <template>
-  <n-flex vertical class="h-full w-full flex items-center justify-center">
-    <n-icon size="145" class="flex items-center justify-center w-full h-full">
+  <n-flex vertical class="h-full items-center justify-center">
+    <n-icon size="145">
       <VueElectronStarterLogo />
     </n-icon>
     <n-gradient-text
