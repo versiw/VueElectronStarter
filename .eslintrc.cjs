@@ -13,5 +13,11 @@ module.exports = {
   rules: {
     'vue/require-default-prop': 'off',
     'vue/multi-word-component-names': 'off'
+  },
+  settings: {
+    'import/core-modules': ['vue-router/auto-routes']
   }
+  // globals: {
+  //   definePage: 'readonly'
+  // }
 }

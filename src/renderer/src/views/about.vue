@@ -1,14 +1,16 @@
-<script setup lang="ts">
-definePage({
-  meta: {
-    title: '关于',
-    enUSTitle: 'About',
-    isHide: false,
-    icon: 'InformationCircleOutline',
-    iconAction: 'InformationCircle'
+<route lang="json" v-if="__USE_AUTO_ROUTES__">
+{
+  "meta": {
+    "title": "关于",
+    "enUSTitle": "About",
+    "isHide": false,
+    "icon": "InformationCircleOutline",
+    "iconAction": "InformationCircle"
   }
-})
-</script>
+}
+</route>
+
+<script setup lang="ts"></script>
 
 <template>
   <n-flex>

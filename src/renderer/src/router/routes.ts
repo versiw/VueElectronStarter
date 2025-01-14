@@ -1,6 +1,6 @@
 import type { RouteRecordRaw } from 'vue-router'
 
-const routes: Array<RouteRecordRaw> = [
+const commRoutes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'index',
@@ -116,4 +116,4 @@ const routes: Array<RouteRecordRaw> = [
   }
 ]
 
-export default routes
+export default commRoutes

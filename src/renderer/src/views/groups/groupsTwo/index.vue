@@ -1,14 +1,16 @@
-<script setup lang="ts">
-definePage({
-  meta: {
-    title: '三级子选项1',
-    enUSTitle: 'Tertiary sub-option 1',
-    isHide: false,
-    icon: '',
-    iconAction: ''
+<route lang="json" v-if="__USE_AUTO_ROUTES__">
+{
+  "meta": {
+    "title": "三级子选项1",
+    "enUSTitle": "Tertiary sub-option 1",
+    "isHide": false,
+    "icon": "",
+    "iconAction": ""
   }
-})
-</script>
+}
+</route>
+
+<script setup lang="ts"></script>
 
 <template>
   <div class="h-full w-full flex items-center justify-center">

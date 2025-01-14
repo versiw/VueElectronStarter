@@ -1,19 +1,30 @@
-import { createRouter, createWebHashHistory } from 'vue-router/auto'
-import routes from '@renderer/router/routes'
+import type { App } from 'vue'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import commRoutes from '@renderer/router/routes'
+// import { routes as autoRoutes } from 'vue-router/auto-routes'
 import { rendererConfig } from '@config/index'
 
 const importAutoRoutes = async () => {
-  if (rendererConfig.useUnpluginVueRouter) {
-    const autoRoutesModule = await import('vue-router/auto-routes')
-    return autoRoutesModule.routes
+  if (__USE_AUTO_ROUTES__) {
+    const module = await import('vue-router/auto-routes')
+    console.log('routes', module.routes)
+    return module.routes
   } else {
     return []
   }
 }
 
-const router = createRouter({
-  history: createWebHashHistory(),
-  routes: rendererConfig.useUnpluginVueRouter ? await importAutoRoutes() : routes
+console.log(import.meta.env.VITE_USE_AUTO_ROUTES)
+
+window.addEventListener('vite:preloadError', (event) => {
+  event.preventDefault()
 })
 
-export default router
+const router = createRouter({
+  history: createWebHashHistory(),
+  routes: __USE_AUTO_ROUTES__ ? await importAutoRoutes() : commRoutes
+})
+
+export const setupRouter = (app: App) => {
+  app.use(router)
+}

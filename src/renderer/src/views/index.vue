@@ -1,14 +1,16 @@
-<script setup lang="ts">
-definePage({
-  meta: {
-    title: '首页',
-    enUSTitle: 'Home',
-    isHide: false,
-    icon: 'HomeOutline',
-    iconAction: 'Home'
+<route lang="json" v-if="__USE_AUTO_ROUTES__">
+{
+  "meta": {
+    "title": "首页",
+    "enUSTitle": "Home",
+    "isHide": false,
+    "icon": "HomeOutline",
+    "iconAction": "Home"
   }
-})
+}
+</route>
 
+<script setup lang="ts">
 import VueElectronStarterLogo from '@renderer/icons/VueElectronStarterLogo.vue'
 import { reactive } from 'vue'
 const versions = reactive({ ...window.electron.process.versions })
